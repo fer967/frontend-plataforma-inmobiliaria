@@ -243,7 +243,7 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
 
                     <input
                         type="text"
-                        placeholder="N° Catastral"
+                        placeholder="N° de cuenta"
                         className="w-full border p-2"
                         value={cadastralNumber}
                         onChange={(e) => setCadastralNumber(e.target.value)}
@@ -273,7 +273,13 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                             >
                                 Ver estado en Rentas
                             </a>
-                            <PropertyMap geometry={parcelData.geometry} />
+                            <p>Lat: {parcelData.idecor.latitude}</p>
+                            <p>Lng: {parcelData.idecor.longitude}</p>
+                            <PropertyMap
+                                latitude={parcelData.latitude}
+                                longitude={parcelData.longitude}
+                            />
+                            
                         </div>
                     )}
 
@@ -284,3 +290,7 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
 }
 
 export default CreatePropertyModal
+
+
+
+
