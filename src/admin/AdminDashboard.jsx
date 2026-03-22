@@ -8,7 +8,7 @@ function AdminDashboard() {
     const [selectedProperty, setSelectedProperty] = useState(null)
 
     async function loadProperties() {
-        const res = await fetch("http://127.0.0.1:8000/properties/")
+        const res = await fetch("https://real-estate-platform-backend-pzzd.onrender.com/properties/")
         const data = await res.json()
         setProperties(data)
     }
@@ -19,7 +19,7 @@ function AdminDashboard() {
 
     async function deleteProperty(id) {
         if (!confirm("¿Eliminar propiedad?")) return
-        await fetch(`http://127.0.0.1:8000/properties/${id}`, {
+        await fetch(`https://real-estate-platform-backend-pzzd.onrender.com/properties/${id}`, {
             method: "DELETE"
         })
         loadProperties()

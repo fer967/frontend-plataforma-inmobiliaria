@@ -29,7 +29,7 @@ function AdminLeads() {
     }
 
     async function updateStatus(id, status) {
-        await fetch(`http://127.0.0.1:8000/leads/${id}/status?status=${status}`, {
+        await fetch(`https://real-estate-platform-backend-pzzd.onrender.com/leads/${id}/status?status=${status}`, {
             method: "PUT"
         })
         loadLeads()

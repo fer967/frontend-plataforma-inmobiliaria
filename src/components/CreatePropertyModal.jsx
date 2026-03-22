@@ -30,7 +30,7 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
 
         try {
             const res = await fetch(
-                `http://127.0.0.1:8000/idecor/parcela/${cadastralNumber}`
+                `https://real-estate-platform-backend-pzzd.onrender.com/idecor/parcela/${cadastralNumber}`
             )
 
             const data = await res.json()
@@ -82,7 +82,7 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
             let res
             if (property) {
                 res = await fetch(
-                    `http://127.0.0.1:8000/properties/${property.id}`,
+                    `https://real-estate-platform-backend-pzzd.onrender.com/properties/${property.id}`,
                     {
                         method: "PUT",
                         headers: {
@@ -98,7 +98,7 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                 )
             } else {
                 res = await fetch(
-                    "http://127.0.0.1:8000/properties/create-with-image",
+                    "https://real-estate-platform-backend-pzzd.onrender.com/properties/create-with-image",
                     {
                         method: "POST",
                         body: formData
@@ -113,6 +113,7 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
             console.error("Error creating property:", error)
         }
     }
+
 
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">

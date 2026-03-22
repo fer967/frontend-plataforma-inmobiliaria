@@ -46,7 +46,7 @@ function Contacto() {
         e.preventDefault()
         if (!validate()) return
         try {
-            const res = await fetch("http://127.0.0.1:8000/leads", {
+            const res = await fetch("https://real-estate-platform-backend-pzzd.onrender.com/leads", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
