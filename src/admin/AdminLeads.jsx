@@ -1,0 +1,154 @@
+import { useEffect, useState } from "react"
+import { getLeads } from "../services/api"
+
+function getStatusColor(status) {
+    switch (status) {
+        case "new":
+            return "bg-blue-500"
+        case "contacted":
+            return "bg-yellow-500"
+        case "closed":
+            return "bg-green-600"
+        default:
+            return "bg-gray-400"
+    }
+}
+
+function AdminLeads() {
+
+    const [leads, setLeads] = useState([])
+    const [filter, setFilter] = useState("all")
+
+    useEffect(() => {
+        loadLeads()
+    }, [])
+
+    async function loadLeads() {
+        const data = await getLeads()
+        setLeads(data)
+    }
+
+    async function updateStatus(id, status) {
+        await fetch(`http://127.0.0.1:8000/leads/${id}/status?status=${status}`, {
+            method: "PUT"
+        })
+        loadLeads()
+    }
+
+    const filteredLeads = leads.filter(lead => {
+        if (filter === "all") return true
+        return lead.status === filter
+    })
+
+    return (
+        <div className="p-4 md:p-8 max-w-7xl mx-auto">
+            <h1 className="text-2xl md:text-3xl font-bold mb-6">
+                Leads
+            </h1>
+            <div className="flex flex-wrap gap-2 mb-6">
+                <button
+                    onClick={() => setFilter("all")}
+                    className={`px-3 py-1 rounded ${filter === "all" ? "bg-black text-white" : "bg-gray-200"}`}
+                >
+                    Todos
+                </button>
+                <button
+                    onClick={() => setFilter("new")}
+                    className={`px-3 py-1 rounded ${filter === "new" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
+                >
+                    Nuevos
+                </button>
+                <button
+                    onClick={() => setFilter("contacted")}
+                    className={`px-3 py-1 rounded ${filter === "contacted" ? "bg-yellow-500 text-white" : "bg-gray-200"}`}
+                >
+                    Contactados
+                </button>
+                <button
+                    onClick={() => setFilter("closed")}
+                    className={`px-3 py-1 rounded ${filter === "closed" ? "bg-green-600 text-white" : "bg-gray-200"}`}
+                >
+                    Cerrados
+                </button>
+            </div>
+            {/* DESKTOP */}
+            <div className="hidden md:block overflow-x-auto">
+                <table className="w-full bg-white shadow rounded">
+                    <thead className="bg-gray-200">
+                        <tr>
+                            <th className="p-3 text-left">Nombre</th>
+                            <th className="p-3 text-left">Teléfono</th>
+                            <th className="p-3 text-left">Mensaje</th>
+                            <th className="p-3 text-left">Fuente</th>
+                            <th className="p-3 text-left">Fecha</th>
+                            <th className="p-3 text-left">Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {filteredLeads.map((lead) => (
+                            <tr key={lead.id} className="border-t">
+                                <td className="p-3">{lead.name}</td>
+                                <td className="p-3">{lead.phone}</td>
+                                <td className="p-3">{lead.message}</td>
+                                <td className="p-3">{lead.source}</td>
+                                <td className="p-3">
+                                    {new Date(lead.created_at).toLocaleString()}
+                                </td>
+                                <td className="p-3 space-y-1">
+                                    <span className={`text-white px-2 py-1 rounded text-xs ${getStatusColor(lead.status)}`}>
+                                        {lead.status}
+                                    </span>
+                                    <select
+                                        value={lead.status}
+                                        onChange={(e) => updateStatus(lead.id, e.target.value)}
+                                        className="border p-1 rounded w-full"
+                                    >
+                                        <option value="new">Nuevo</option>
+                                        <option value="contacted">Contactado</option>
+                                        <option value="closed">Cerrado</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+            {/* MOBILE */}
+            <div className="md:hidden space-y-4">
+                {filteredLeads.map((lead) => (
+                    <div key={lead.id} className="bg-white p-4 rounded shadow">
+                        <h2 className="font-semibold text-lg">
+                            {lead.name}
+                        </h2>
+                        <p className="text-gray-600">
+                            {lead.phone}
+                        </p>
+                        <p className="mt-2">
+                            {lead.message}
+                        </p>
+                        <p className="text-sm text-gray-500 mt-2">
+                            Fuente: {lead.source}
+                        </p>
+                        <p className="text-xs text-gray-400">
+                            {new Date(lead.created_at).toLocaleString()}
+                        </p>
+                        <select
+                            value={lead.status}
+                            onChange={(e) => updateStatus(lead.id, e.target.value)}
+                            className="mt-2 border p-2 w-full rounded"
+                        >
+                            <option value="new">Nuevo</option>
+                            <option value="contacted">Contactado</option>
+                            <option value="closed">Cerrado</option>
+                        </select>
+                    </div>
+                ))}
+            </div>
+        </div>
+    )
+}
+
+export default AdminLeads
+
+
+
