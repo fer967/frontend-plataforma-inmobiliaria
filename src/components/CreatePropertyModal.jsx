@@ -256,14 +256,35 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                         Buscar en IDECOR
                     </button>
 
-                    {parcelData && (
+                    {parcelData?.idecor && (
+                        <div className="mt-4 text-sm bg-gray-50 p-3 rounded space-y-1">
+                            <p><b>Cuenta:</b> {parcelData.idecor.cuenta}</p>
+                            <p><b>Nomenclatura:</b> {parcelData.idecor.nomenclatura}</p>
+                            <p><b>Designación:</b> {parcelData.idecor.designacion}</p>
+                            <p><b>Tipo:</b> {parcelData.idecor.tipo_inmueble}</p>
+                            <p><b>Estado:</b> {parcelData.idecor.estado}</p>
+                            <p><b>Sup. Terreno:</b> {parcelData.idecor.superficie_terreno} m²</p>
+                            <p><b>Sup. Edificada:</b> {parcelData.idecor.superficie_mejoras} m²</p>
+                            <p><b>Valuación:</b> ${parcelData.idecor.valuacion_total}</p>
+                            <a
+                                href={`https://www.rentascordoba.gob.ar/cs/${parcelData.idecor.cuenta}`}
+                                target="_blank"
+                                className="text-blue-600 underline"
+                            >
+                                Ver estado en Rentas
+                            </a>
+                            <PropertyMap geometry={parcelData.geometry} />
+                        </div>
+                    )}
+
+                    {/* {parcelData && (
                         <div className="mt-4 text-sm">
                             <p>Superficie: {parcelData.area} m²</p>
                             <p>Lat: {parcelData.latitude}</p>
                             <p>Lng: {parcelData.longitude}</p>
                             <PropertyMap geometry={parcelData.geometry} />
                         </div>
-                    )}
+                    )} */}
 
                 </form>
             </div>
