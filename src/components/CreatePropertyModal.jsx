@@ -277,15 +277,6 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                         </div>
                     )}
 
-                    {/* {parcelData && (
-                        <div className="mt-4 text-sm">
-                            <p>Superficie: {parcelData.area} m²</p>
-                            <p>Lat: {parcelData.latitude}</p>
-                            <p>Lng: {parcelData.longitude}</p>
-                            <PropertyMap geometry={parcelData.geometry} />
-                        </div>
-                    )} */}
-
                 </form>
             </div>
         </div>
