@@ -273,6 +273,13 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                             >
                                 Ver estado en Rentas
                             </a>
+                            <a
+                                href={`https://real-estate-platform-backend-pzzd.onrender.com/idecor/kml/${cadastralNumber}`}
+                                target="_blank"
+                                className="bg-green-600 text-white px-3 py-2 rounded w-full block text-center"
+                            >
+                                Descargar KML (Google Earth)
+                            </a>
                             <p>Lat: {parcelData.latitude}</p>
                             <p>Lng: {parcelData.longitude}</p>
                             <PropertyMap
