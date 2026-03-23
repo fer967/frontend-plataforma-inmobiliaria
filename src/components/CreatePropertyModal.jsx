@@ -273,10 +273,13 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                             >
                                 Ver estado en Rentas
                             </a>
-                            <p>Lat: {parcelData.idecor.latitude}</p>
-                            <p>Lng: {parcelData.idecor.longitude}</p>
-                            <PropertyMap geometry={parcelData.geometry} />
-                            
+                            <p>Lat: {parcelData.latitude}</p>
+                            <p>Lng: {parcelData.longitude}</p>
+                            <PropertyMap
+                                latitude={parcelData.latitude}
+                                longitude={parcelData.longitude}
+                            />
+
                         </div>
                     )}
 

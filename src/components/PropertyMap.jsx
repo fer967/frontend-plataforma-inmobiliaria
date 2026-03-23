@@ -1,25 +1,28 @@
-import { MapContainer, TileLayer, GeoJSON } from "react-leaflet"
-import "leaflet/dist/leaflet.css"
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet"
 
-function PropertyMap({ geometry }) {
+function PropertyMap({ latitude, longitude }) {
 
-    if (!geometry) return null
+    if (!latitude || !longitude) return null
 
     return (
         <MapContainer
-            style={{ height: "250px", width: "100%" }}
-            center={[-31.4, -64.2]} // 👈 fallback Córdoba
-            zoom={16}
+            center={[latitude, longitude]}
+            zoom={17}
+            style={{ height: "300px", width: "100%" }}
         >
             <TileLayer
+                attribution='&copy; OpenStreetMap'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <GeoJSON data={geometry} />
+            <Marker position={[latitude, longitude]}>
+                <Popup>Ubicación de la propiedad</Popup>
+            </Marker>
         </MapContainer>
     )
 }
 
 export default PropertyMap
+
 
 
 // import { MapContainer, TileLayer, GeoJSON } from "react-leaflet"
@@ -31,7 +34,8 @@ export default PropertyMap
 
 //     return (
 //         <MapContainer
-//             style={{ height: "200px", width: "100%" }}
+//             style={{ height: "250px", width: "100%" }}
+//             center={[-31.4, -64.2]} // 👈 fallback Córdoba
 //             zoom={16}
 //         >
 //             <TileLayer
@@ -43,3 +47,5 @@ export default PropertyMap
 // }
 
 // export default PropertyMap
+
+
