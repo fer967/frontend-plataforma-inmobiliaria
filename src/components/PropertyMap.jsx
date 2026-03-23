@@ -1,15 +1,30 @@
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet"
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet"
+import { useEffect } from "react"
 
 function PropertyMap({ latitude, longitude }) {
 
-    if (!latitude || !longitude) return null
+    if (!latitude || !longitude) {
+        console.log("NO COORDS:", latitude, longitude)
+        return null
+    }
+
+    function ResizeMap() {
+        const map = useMap()
+        useEffect(() => {
+            setTimeout(() => {
+                map.invalidateSize()
+            }, 100)
+        }, [map])
+        return null
+    }
 
     return (
         <MapContainer
             center={[latitude, longitude]}
             zoom={17}
-            style={{ height: "300px", width: "100%" }}
+            className="h-[300px] w-full rounded mt-2"
         >
+            <ResizeMap />
             <TileLayer
                 attribution='&copy; OpenStreetMap'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
