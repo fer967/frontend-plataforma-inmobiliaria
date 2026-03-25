@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import PropertyMap from "./PropertyMap"
+// import PropertyMap from "./PropertyMap"
 
 function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
 
@@ -7,7 +7,6 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
     const [description, setDescription] = useState(property?.description || "")
     const [price, setPrice] = useState(property?.price || "")
     const [city, setCity] = useState(property?.city || "")
-    const [file, setFile] = useState(null)
     const [operationType, setOperationType] = useState("")
     const [propertyType, setPropertyType] = useState("")
     const [bedrooms, setBedrooms] = useState("")
