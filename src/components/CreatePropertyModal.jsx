@@ -27,33 +27,26 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
 
     async function buscarParcela() {
         if (!cadastralNumber) return alert("Ingresar número catastral")
-
         try {
             const res = await fetch(
                 `https://real-estate-platform-backend-pzzd.onrender.com/idecor/parcela/${cadastralNumber}`
             )
-
             const data = await res.json()
-
             if (!data) {
                 alert("No se encontró parcela")
                 return
             }
-
             setParcelData(data)
-
             // autocompletar campos
             setArea(data.area || "")
-
             // si querés guardar coords después:
             // setLatitude(data.latitude)
             // setLongitude(data.longitude)
-
         } catch (error) {
             console.error(error)
         }
     }
-
+    
     if (!isOpen) return null
 
     const handleSubmit = async (e) => {
@@ -282,10 +275,10 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                             </a>
                             <p>Lat: {parcelData.latitude}</p>
                             <p>Lng: {parcelData.longitude}</p>
-                            <PropertyMap
+                            {/* <PropertyMap
                                 latitude={parcelData.latitude}
                                 longitude={parcelData.longitude}
-                            />
+                            /> */}
 
                         </div>
                     )}
