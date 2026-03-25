@@ -214,13 +214,31 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                         required
                     />
 
-                    {/* <input
+
+                    <input
                         type="file"
+                        multiple
                         accept="image/*"
-                        className="w-full"
-                        onChange={(e) => setFile(e.target.files[0])}
-                        required
-                    /> */}
+                        className="w-full border p-2"
+                        onChange={(e) => setFiles([...e.target.files])}
+                    />
+                    <p className="text-xs text-gray-500">
+                        Podés seleccionar múltiples imágenes (Ctrl + click o Shift + click)
+                    </p>
+
+
+                    {files.length > 0 && (
+                        <div className="grid grid-cols-3 gap-2 mt-2">
+                            {files.map((file, index) => (
+                                <img
+                                    key={index}
+                                    src={URL.createObjectURL(file)}
+                                    className="w-full h-20 object-cover rounded"
+                                />
+                            ))}
+                        </div>
+                    )}
+
 
                     <div className="flex justify-end gap-2">
                         <button
@@ -246,12 +264,12 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                         onChange={(e) => setCadastralNumber(e.target.value)}
                     />
 
-                    <input
+                    {/* <input
                         type="file"
                         multiple
                         onChange={(e) => setFiles([...e.target.files])}
-                    />
-                    
+                    /> */}
+
                     <button
                         type="button"
                         onClick={buscarParcela}
@@ -286,7 +304,7 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                             </a>
                             <p>Lat: {parcelData.latitude}</p>
                             <p>Lng: {parcelData.longitude}</p>
-                            {/* <PropertyMap geometry={parcelData.geometry} /> */}
+
                         </div>
                     )}
 
@@ -297,6 +315,10 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
 }
 
 export default CreatePropertyModal
+
+
+
+{/* <PropertyMap geometry={parcelData.geometry} /> */ }
 
 
 
