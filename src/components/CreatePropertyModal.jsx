@@ -214,13 +214,15 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                         onChange={(e) => setCity(e.target.value)}
                         required
                     />
-                    <input
+
+                    {/* <input
                         type="file"
                         accept="image/*"
                         className="w-full"
                         onChange={(e) => setFile(e.target.files[0])}
                         required
-                    />
+                    /> */}
+
                     <div className="flex justify-end gap-2">
                         <button
                             type="button"
@@ -244,11 +246,13 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                         value={cadastralNumber}
                         onChange={(e) => setCadastralNumber(e.target.value)}
                     />
+
                     <input
                         type="file"
                         multiple
                         onChange={(e) => setFiles([...e.target.files])}
                     />
+                    
                     <button
                         type="button"
                         onClick={buscarParcela}
