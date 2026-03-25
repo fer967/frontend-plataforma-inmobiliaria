@@ -275,7 +275,7 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                             </a>
                             <p>Lat: {parcelData.latitude}</p>
                             <p>Lng: {parcelData.longitude}</p>
-                            <PropertyMap geometry={parcelData.geometry} />
+                            {/* <PropertyMap geometry={parcelData.geometry} /> */}
                         </div>
                     )}
 
