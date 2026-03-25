@@ -19,11 +19,9 @@ function PropertyDetail() {
 
     if (!property) return <p>Cargando...</p>
 
-    const images = [
-        property.image_url,
-        property.image_url,
-        property.image_url
-    ]
+    const images = property.images?.length
+    ? property.images
+    : [property.image_url]
 
     return (
         <div className="p-8 max-w-6xl mx-auto">
