@@ -15,9 +15,9 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
     const [area, setArea] = useState("")
     const [neighborhood, setNeighborhood] = useState("")
     const [featured, setFeatured] = useState(false)
-
     const [cadastralNumber, setCadastralNumber] = useState("")
     const [parcelData, setParcelData] = useState(null)
+    const [files, setFiles] = useState([])
 
     useEffect(() => {
         if (parcelData) {
@@ -46,7 +46,7 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
             console.error(error)
         }
     }
-    
+
     if (!isOpen) return null
 
     const handleSubmit = async (e) => {
@@ -56,7 +56,10 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
         formData.append("description", description)
         formData.append("price", price)
         formData.append("city", city)
-        formData.append("file", file)
+        files.forEach(file => {
+            formData.append("files", file)
+        })
+        // formData.append("file", file)
         formData.append("operation_type", operationType)
         formData.append("property_type", propertyType)
         formData.append("bedrooms", bedrooms)
@@ -240,6 +243,11 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                         className="w-full border p-2"
                         value={cadastralNumber}
                         onChange={(e) => setCadastralNumber(e.target.value)}
+                    />
+                    <input
+                        type="file"
+                        multiple
+                        onChange={(e) => setFiles([...e.target.files])}
                     />
                     <button
                         type="button"
