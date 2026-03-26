@@ -22,20 +22,18 @@ function PropertyDetail() {
     let images = property.images?.length
         ? property.images
         : [property.image_url]
-    // quitar duplicados
-    images = [...new Set(images)]
-    // asegurar que la principal esté primera
-    if (property.image_url) {
-        images = [
-            ...images.filter(img => img !== property.image_url)
-        ]
-    }
-
+    // separar portada
+    const mainImage = property.image_url || images[0]
+    // thumbnails SIN la portada
+    const galleryImages = images.filter(img => img !== mainImage)
 
     return (
         <div className="p-8 max-w-6xl mx-auto">
             {/* galería */}
-            <PropertyGallery images={images} />
+            <PropertyGallery
+                mainImage={mainImage}
+                images={galleryImages}
+            />
             {/* info propiedad */}
             <div className="mt-8">
                 <h1 className="text-3xl font-bold">

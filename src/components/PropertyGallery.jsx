@@ -1,8 +1,8 @@
 import { useState } from "react"
 
-function PropertyGallery({ images }) {
+function PropertyGallery({ mainImage, images }) {
 
-    const [selectedImage, setSelectedImage] = useState(images[0])
+    const [selectedImage, setSelectedImage] = useState(mainImage)
 
     return (
         <div>
@@ -10,6 +10,7 @@ function PropertyGallery({ images }) {
                 src={selectedImage}
                 className="w-full h-96 object-cover rounded-lg"
             />
+
             <div className="flex gap-3 mt-4 overflow-x-auto">
                 {images.map((img, index) => (
                     <img
@@ -23,5 +24,4 @@ function PropertyGallery({ images }) {
         </div>
     )
 }
-
 export default PropertyGallery
