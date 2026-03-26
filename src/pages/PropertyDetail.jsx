@@ -19,11 +19,19 @@ function PropertyDetail() {
 
     if (!property) return <p>Cargando...</p>
 
-    const images = property.images?.length
+    let images = property.images?.length
         ? property.images
         : [property.image_url]
+    // quitar duplicados
+    images = [...new Set(images)]
+    // asegurar que la principal esté primera
+    if (property.image_url) {
+        images = [
+            property.image_url,
+            ...images.filter(img => img !== property.image_url)
+        ]
+    }
 
-        console.log(property.images)
 
     return (
         <div className="p-8 max-w-6xl mx-auto">
