@@ -27,7 +27,6 @@ function PropertyDetail() {
     // asegurar que la principal esté primera
     if (property.image_url) {
         images = [
-            property.image_url,
             ...images.filter(img => img !== property.image_url)
         ]
     }
