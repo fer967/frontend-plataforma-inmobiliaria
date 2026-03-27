@@ -24,6 +24,25 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
         }
     }, [parcelData])
 
+
+    useEffect(() => {
+        if (property) {
+            setTitle(property.title || "")
+            setDescription(property.description || "")
+            setPrice(property.price || "")
+            setCity(property.city || "")
+            setOperationType(property.operation_type || "")
+            setPropertyType(property.property_type || "")
+            setBedrooms(property.bedrooms || "")
+            setBathrooms(property.bathrooms || "")
+            setArea(property.area_m2 || "")
+            setNeighborhood(property.neighborhood || "")
+            setFeatured(property.featured || false)
+            setCadastralNumber(property.cadastral_number || "")
+        }
+    }, [property])
+
+
     async function buscarParcela() {
         if (!cadastralNumber) return alert("Ingresar número catastral")
         try {
@@ -38,9 +57,6 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
             setParcelData(data)
             // autocompletar campos
             setArea(data.area || "")
-            // si querés guardar coords después:
-            // setLatitude(data.latitude)
-            // setLongitude(data.longitude)
         } catch (error) {
             console.error(error)
         }
@@ -58,7 +74,6 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
         files.forEach(file => {
             formData.append("files", file)
         })
-        // formData.append("file", file)
         formData.append("operation_type", operationType)
         formData.append("property_type", propertyType)
         formData.append("bedrooms", bedrooms)
@@ -75,23 +90,44 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
 
         try {
             let res
+
+
             if (property) {
-                res = await fetch(
-                    `https://real-estate-platform-backend-pzzd.onrender.com/properties/${property.id}`,
-                    {
-                        method: "PUT",
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify({
-                            title,
-                            description,
-                            price,
-                            city
-                        })
-                    }
-                )
-            } else {
+                const formData = new FormData()
+                formData.append("title", title)
+                formData.append("description", description)
+                formData.append("price", price)
+                formData.append("city", city)
+                files.forEach(file => {
+                    formData.append("files", file)
+                })
+                fetch(`/properties/${property.id}/with-images`, {
+                    method: "PUT",
+                    body: formData
+                })
+            }
+
+
+            // if (property) {
+            //     res = await fetch(
+            //         `https://real-estate-platform-backend-pzzd.onrender.com/properties/${property.id}`,
+            //         {
+            //             method: "PUT",
+            //             headers: {
+            //                 "Content-Type": "application/json"
+            //             },
+            //             body: JSON.stringify({
+            //                 title,
+            //                 description,
+            //                 price,
+            //                 city
+            //             })
+            //         }
+            //     )
+            // }
+
+
+            else {
                 res = await fetch(
                     "https://real-estate-platform-backend-pzzd.onrender.com/properties/create-with-image",
                     {
@@ -227,6 +263,19 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                     </p>
 
 
+                    {property?.images && (
+                        <div className="grid grid-cols-3 gap-2 mt-2">
+                            {property.images.map((img, i) => (
+                                <img
+                                    key={i}
+                                    src={img}
+                                    className="w-full h-20 object-cover rounded"
+                                />
+                            ))}
+                        </div>
+                    )}
+
+
                     {files.length > 0 && (
                         <div className="grid grid-cols-3 gap-2 mt-2">
                             {files.map((file, index) => (
@@ -263,12 +312,6 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                         value={cadastralNumber}
                         onChange={(e) => setCadastralNumber(e.target.value)}
                     />
-
-                    {/* <input
-                        type="file"
-                        multiple
-                        onChange={(e) => setFiles([...e.target.files])}
-                    /> */}
 
                     <button
                         type="button"
