@@ -93,38 +93,24 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
 
 
             if (property) {
-                const formData = new FormData()
+                
                 formData.append("title", title)
                 formData.append("description", description)
                 formData.append("price", price)
                 formData.append("city", city)
+
                 files.forEach(file => {
                     formData.append("files", file)
                 })
-                fetch(`/properties/${property.id}/with-images`, {
-                    method: "PUT",
-                    body: formData
-                })
+
+                res = await fetch(
+                    `https://real-estate-platform-backend-pzzd.onrender.com/properties/${property.id}/with-images`,
+                    {
+                        method: "PUT",
+                        body: formData
+                    }
+                )
             }
-
-
-            // if (property) {
-            //     res = await fetch(
-            //         `https://real-estate-platform-backend-pzzd.onrender.com/properties/${property.id}`,
-            //         {
-            //             method: "PUT",
-            //             headers: {
-            //                 "Content-Type": "application/json"
-            //             },
-            //             body: JSON.stringify({
-            //                 title,
-            //                 description,
-            //                 price,
-            //                 city
-            //             })
-            //         }
-            //     )
-            // }
 
 
             else {
@@ -297,11 +283,8 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                         >
                             Cancelar
                         </button>
-                        <button
-                            type="submit"
-                            className="bg-blue-600 text-white px-4 py-2 rounded"
-                        >
-                            Crear
+                        <button>
+                            {property ? "Actualizar" : "Crear"}
                         </button>
                     </div>
 
