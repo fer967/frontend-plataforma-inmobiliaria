@@ -67,6 +67,11 @@ function Login() {
                     </button>
                 </div>
 
+                <button type="submit"
+                    className="w-full bg-blue-600 text-white py-2 rounded">
+                    Ingresar
+                </button>
+
 
                 <p className="text-sm text-center mt-4">
                     <button
@@ -77,22 +82,6 @@ function Login() {
                         Cambiar contraseña
                     </button>
                 </p>
-
-
-                {/* <input
-                    type="password"
-                    placeholder="Contraseña"
-                    className="w-full border p-2 mb-4"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-                <button
-                    type="submit"
-                    className="w-full bg-blue-600 text-white py-2 rounded"
-                >
-                    Ingresar
-                </button> */}
 
             </form>
 
