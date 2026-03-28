@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react"
-// import PropertyMap from "./PropertyMap"
 
 function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
 
@@ -28,6 +27,14 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
 
     useEffect(() => {
         if (property) {
+            const imgs = property.images?.length
+                ? property.images
+                : property.image_url
+                    ? [property.image_url]
+                    : []
+            // eliminar duplicados por si acaso
+            const uniqueImgs = [...new Set(imgs)]
+            setExistingImages(uniqueImgs)
             setTitle(property.title || "")
             setDescription(property.description || "")
             setPrice(property.price || "")
@@ -40,9 +47,27 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
             setNeighborhood(property.neighborhood || "")
             setFeatured(property.featured || false)
             setCadastralNumber(property.cadastral_number || "")
-            setExistingImages(property.images || [])
         }
     }, [property])
+
+
+    // useEffect(() => {
+    //     if (property) {
+    //         setTitle(property.title || "")
+    //         setDescription(property.description || "")
+    //         setPrice(property.price || "")
+    //         setCity(property.city || "")
+    //         setOperationType(property.operation_type || "")
+    //         setPropertyType(property.property_type || "")
+    //         setBedrooms(property.bedrooms || "")
+    //         setBathrooms(property.bathrooms || "")
+    //         setArea(property.area_m2 || "")
+    //         setNeighborhood(property.neighborhood || "")
+    //         setFeatured(property.featured || false)
+    //         setCadastralNumber(property.cadastral_number || "")
+    //         setExistingImages(property.images || [])
+    //     }
+    // }, [property])
 
 
     function removeExistingImage(index) {
@@ -252,19 +277,6 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                     </p>
 
 
-                    {property?.images && (
-                        <div className="grid grid-cols-3 gap-2 mt-2">
-                            {property.images.map((img, i) => (
-                                <img
-                                    key={i}
-                                    src={img}
-                                    className="w-full h-20 object-cover rounded"
-                                />
-                            ))}
-                        </div>
-                    )}
-
-
                     {existingImages.length > 0 && (
                         <div className="grid grid-cols-3 gap-2 mt-2">
                             {existingImages.map((img, i) => (
@@ -368,6 +380,8 @@ export default CreatePropertyModal
 
 
 
+
+// import PropertyMap from "./PropertyMap"
 {/* <PropertyMap geometry={parcelData.geometry} /> */ }
 
 
