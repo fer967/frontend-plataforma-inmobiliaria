@@ -51,25 +51,6 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
     }, [property])
 
 
-    // useEffect(() => {
-    //     if (property) {
-    //         setTitle(property.title || "")
-    //         setDescription(property.description || "")
-    //         setPrice(property.price || "")
-    //         setCity(property.city || "")
-    //         setOperationType(property.operation_type || "")
-    //         setPropertyType(property.property_type || "")
-    //         setBedrooms(property.bedrooms || "")
-    //         setBathrooms(property.bathrooms || "")
-    //         setArea(property.area_m2 || "")
-    //         setNeighborhood(property.neighborhood || "")
-    //         setFeatured(property.featured || false)
-    //         setCadastralNumber(property.cadastral_number || "")
-    //         setExistingImages(property.images || [])
-    //     }
-    // }, [property])
-
-
     function removeExistingImage(index) {
         const updated = [...existingImages]
         updated.splice(index, 1)
@@ -130,9 +111,7 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                 formData.append("description", description)
                 formData.append("price", price)
                 formData.append("city", city)
-                files.forEach(file => {
-                    formData.append("files", file)
-                })
+                
                 res = await fetch(
                     `https://real-estate-platform-backend-pzzd.onrender.com/properties/${property.id}/with-images`,
                     {
