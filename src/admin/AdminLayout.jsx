@@ -11,18 +11,17 @@ function AdminLayout() {
 
             {/* 🔝 TOPBAR MOBILE */}
             <header className="md:hidden bg-gray-900 text-white p-4 flex justify-between items-center">
-                {/* <h2 className="font-bold">Admin</h2> */}
-
-                <div className="flex gap-2 text-sm">
+                <h2 className="font-bold">Admin</h2>
+                <div className="flex items-center gap-3 text-sm">
                     <Link to="/admin">Dashboard</Link>
                     <Link to="/admin/leads">Leads</Link>
-                    <button
-                        onClick={logout}
-                        className="mt-auto bg-red-600 p-2 rounded"
-                    >
-                        Cerrar sesión
-                    </button>
                 </div>
+                <button
+                    onClick={logout}
+                    className="bg-red-600 px-2 py-1 rounded text-xs"
+                >
+                    Salir
+                </button>
             </header>
 
             {/* 📌 SIDEBAR DESKTOP */}
@@ -37,13 +36,13 @@ function AdminLayout() {
                     <Link to="/admin/leads" className="hover:bg-gray-700 p-2 rounded">
                         Leads
                     </Link>
-                    <button
-                        onClick={logout}
-                        className="mt-auto bg-red-600 p-2 rounded"
-                    >
-                        Cerrar sesión
-                    </button>
                 </nav>
+                <button
+                    onClick={logout}
+                    className="mt-auto bg-red-600 p-2 rounded"
+                >
+                    Cerrar sesión
+                </button>
 
             </aside>
 

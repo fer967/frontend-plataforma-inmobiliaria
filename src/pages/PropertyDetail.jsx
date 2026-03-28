@@ -22,8 +22,14 @@ function PropertyDetail() {
     let images = property.images?.length
         ? property.images
         : [property.image_url]
+            ? [property.image_url]
+            : []
+    // eliminar duplicados
+    images = [...new Set(images)]
     // separar portada
     const mainImage = property.image_url || images[0]
+
+
     // thumbnails SIN la portada
     const galleryImages = images.filter(img => img !== mainImage)
 

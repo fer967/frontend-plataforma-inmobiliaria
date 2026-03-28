@@ -8,15 +8,13 @@ function Login() {
 
     const { login, user } = useContext(AuthContext)
     const navigate = useNavigate()
-
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [showPassword, setShowPassword] = useState(false)
 
     const handleSubmit = (e) => {
         e.preventDefault()
-
         login(username, password)
-
         // pequeño delay para asegurar estado actualizado
         setTimeout(() => {
             if (localStorage.getItem("user")) {
@@ -33,7 +31,6 @@ function Login() {
 
     return (
         <div className="flex justify-center items-center min-h-screen bg-gray-100">
-
             <form
                 onSubmit={handleSubmit}
                 className="bg-white p-8 rounded shadow w-full max-w-sm"
@@ -51,7 +48,38 @@ function Login() {
                     required
                 />
 
-                <input
+
+                <div className="relative mb-4">
+                    <input
+                        type={showPassword ? "text" : "password"}
+                        placeholder="Contraseña"
+                        className="w-full border p-2 pr-10"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                    <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 text-sm text-gray-600"
+                    >
+                        {showPassword ? "🙈" : "👁"}
+                    </button>
+                </div>
+
+
+                <p className="text-sm text-center mt-4">
+                    <button
+                        type="button"
+                        className="text-blue-600 underline"
+                        onClick={() => alert("Funcionalidad próximamente")}
+                    >
+                        Cambiar contraseña
+                    </button>
+                </p>
+
+
+                {/* <input
                     type="password"
                     placeholder="Contraseña"
                     className="w-full border p-2 mb-4"
@@ -59,13 +87,13 @@ function Login() {
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 />
-
                 <button
                     type="submit"
                     className="w-full bg-blue-600 text-white py-2 rounded"
                 >
                     Ingresar
-                </button>
+                </button> */}
+
             </form>
 
         </div>
