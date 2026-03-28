@@ -17,6 +17,7 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
     const [cadastralNumber, setCadastralNumber] = useState("")
     const [parcelData, setParcelData] = useState(null)
     const [files, setFiles] = useState([])
+    const [existingImages, setExistingImages] = useState([])
 
     useEffect(() => {
         if (parcelData) {
@@ -39,8 +40,16 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
             setNeighborhood(property.neighborhood || "")
             setFeatured(property.featured || false)
             setCadastralNumber(property.cadastral_number || "")
+            setExistingImages(property.images || [])
         }
     }, [property])
+
+
+    function removeExistingImage(index) {
+        const updated = [...existingImages]
+        updated.splice(index, 1)
+        setExistingImages(updated)
+    }
 
 
     async function buscarParcela() {
@@ -61,9 +70,7 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
             console.error(error)
         }
     }
-
     if (!isOpen) return null
-
     const handleSubmit = async (e) => {
         e.preventDefault()
         const formData = new FormData()
@@ -82,27 +89,25 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
         formData.append("neighborhood", neighborhood)
         formData.append("featured", featured)
         formData.append("cadastral_number", cadastralNumber)
+        formData.append(
+            "existing_images",
+            JSON.stringify(existingImages)
+        )
         if (parcelData) {
             formData.append("latitude", parcelData.latitude)
             formData.append("longitude", parcelData.longitude)
             formData.append("area_m2", parcelData.area)
         }
-
         try {
             let res
-
-
             if (property) {
-                
                 formData.append("title", title)
                 formData.append("description", description)
                 formData.append("price", price)
                 formData.append("city", city)
-
                 files.forEach(file => {
                     formData.append("files", file)
                 })
-
                 res = await fetch(
                     `https://real-estate-platform-backend-pzzd.onrender.com/properties/${property.id}/with-images`,
                     {
@@ -111,8 +116,6 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                     }
                 )
             }
-
-
             else {
                 res = await fetch(
                     "https://real-estate-platform-backend-pzzd.onrender.com/properties/create-with-image",
@@ -257,6 +260,27 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                                     src={img}
                                     className="w-full h-20 object-cover rounded"
                                 />
+                            ))}
+                        </div>
+                    )}
+
+
+                    {existingImages.length > 0 && (
+                        <div className="grid grid-cols-3 gap-2 mt-2">
+                            {existingImages.map((img, i) => (
+                                <div key={i} className="relative">
+                                    <img
+                                        src={img}
+                                        className="w-full h-20 object-cover rounded"
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={() => removeExistingImage(i)}
+                                        className="absolute top-1 right-1 bg-red-600 text-white text-xs px-1 rounded"
+                                    >
+                                        X
+                                    </button>
+                                </div>
                             ))}
                         </div>
                     )}
