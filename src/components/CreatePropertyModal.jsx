@@ -18,6 +18,9 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
     const [files, setFiles] = useState([])
     const [existingImages, setExistingImages] = useState([])
 
+    const API_URL = "http://127.0.0.1:8000";
+    //const API_URL = import.meta.env.VITE_API_URL
+
     useEffect(() => {
         if (parcelData) {
             console.log("GEOMETRY:", parcelData.geometry)
@@ -62,7 +65,7 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
         if (!cadastralNumber) return alert("Ingresar número catastral")
         try {
             const res = await fetch(
-                `https://real-estate-platform-backend-pzzd.onrender.com/idecor/parcela/${cadastralNumber}`
+                `${API_URL}/idecor/parcela/${cadastralNumber}`
             )
             const data = await res.json()
             if (!data) {
@@ -113,7 +116,7 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                 formData.append("city", city)
                 
                 res = await fetch(
-                    `https://real-estate-platform-backend-pzzd.onrender.com/properties/${property.id}/with-images`,
+                    `${API_URL}/properties/${property.id}/with-images`,
                     {
                         method: "PUT",
                         body: formData
@@ -122,7 +125,7 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
             }
             else {
                 res = await fetch(
-                    "https://real-estate-platform-backend-pzzd.onrender.com/properties/create-with-image",
+                    `${API_URL}/properties/create-with-image`,
                     {
                         method: "POST",
                         body: formData

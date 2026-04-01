@@ -28,8 +28,11 @@ function AdminLeads() {
         setLeads(data)
     }
 
+    const API_URL = "http://127.0.0.1:8000";
+    //const API_URL = import.meta.env.VITE_API_URL
+
     async function updateStatus(id, status) {
-        await fetch(`https://real-estate-platform-backend-pzzd.onrender.com/leads/${id}/status?status=${status}`, {
+        await fetch(`${API_URL}/leads/${id}/status?status=${status}`, {
             method: "PUT"
         })
         loadLeads()

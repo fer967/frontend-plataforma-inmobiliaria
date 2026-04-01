@@ -7,8 +7,11 @@ function AdminDashboard() {
     const [showModal, setShowModal] = useState(false)
     const [selectedProperty, setSelectedProperty] = useState(null)
 
+    const API_URL = "http://127.0.0.1:8000";
+    //const API_URL = import.meta.env.VITE_API_URL
+
     async function loadProperties() {
-        const res = await fetch("https://real-estate-platform-backend-pzzd.onrender.com/properties/")
+        const res = await fetch(`${API_URL}/properties/`)
         const data = await res.json()
         setProperties(data)
     }
@@ -19,7 +22,7 @@ function AdminDashboard() {
 
     async function deleteProperty(id) {
         if (!confirm("¿Eliminar propiedad?")) return
-        await fetch(`https://real-estate-platform-backend-pzzd.onrender.com/properties/${id}`, {
+        await fetch(`${API_URL}/properties/${id}`, {
             method: "DELETE"
         })
         loadProperties()
