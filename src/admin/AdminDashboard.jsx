@@ -7,8 +7,8 @@ function AdminDashboard() {
     const [showModal, setShowModal] = useState(false)
     const [selectedProperty, setSelectedProperty] = useState(null)
 
-    const API_URL = "http://127.0.0.1:8000";
-    //const API_URL = import.meta.env.VITE_API_URL
+    // const API_URL = "http://127.0.0.1:8000";
+    const API_URL = import.meta.env.VITE_API_URL
 
     async function loadProperties() {
         const res = await fetch(`${API_URL}/properties/`)
