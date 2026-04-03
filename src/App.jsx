@@ -61,7 +61,7 @@ function App() {
                 para responder consultas.
               </p>
               <p>No se comparten datos con terceros.</p>
-              <p>Contacto: contacto@tudominio.com</p>
+              <p>Contacto: gabrielfcorrea3@gmail.com</p>
             </div>
           }
         />
@@ -74,7 +74,7 @@ function App() {
               <p>
                 Los usuarios pueden solicitar la eliminación de sus datos personales enviando un correo a:
               </p>
-              <p>contacto@tudominio.com</p>
+              <p>gabrielfcorrea3@gmail.com</p>
               <p>La eliminación se realizará en un plazo razonable.</p>
             </div>
           }
