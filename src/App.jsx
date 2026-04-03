@@ -48,6 +48,37 @@ function App() {
           <Route path="properties" element={<AdminProperties />} />
           <Route path="leads" element={<AdminLeads />} />
         </Route>
+        <Route
+          path="/privacy"
+          element={
+            <div style={{ padding: "20px" }}>
+              <h1>Política de Privacidad</h1>
+              <p>
+                Esta aplicación es una plataforma de prueba para la gestión de propiedades inmobiliarias.
+              </p>
+              <p>
+                No se recopilan datos personales sensibles. Los datos ingresados se utilizan únicamente
+                para responder consultas.
+              </p>
+              <p>No se comparten datos con terceros.</p>
+              <p>Contacto: contacto@tudominio.com</p>
+            </div>
+          }
+        />
+
+        <Route
+          path="/data-deletion"
+          element={
+            <div style={{ padding: "20px" }}>
+              <h1>Eliminación de Datos</h1>
+              <p>
+                Los usuarios pueden solicitar la eliminación de sus datos personales enviando un correo a:
+              </p>
+              <p>contacto@tudominio.com</p>
+              <p>La eliminación se realizará en un plazo razonable.</p>
+            </div>
+          }
+        />
       </Routes>
       <WhatsAppButton />
     </BrowserRouter>
