@@ -7,12 +7,6 @@ function PropertyDetail() {
 
     const { id } = useParams()
     const [property, setProperty] = useState(null)
-    const phone = "5493516184580" // 👈 tu número nuevo (sin +)
-    const message = `Hola, quiero consultar por la propiedad:
-    🏠 ${property.title}
-    💰 $${property.price}
-    📍 ${property.city}
-    Link: ${window.location.href}`
 
     useEffect(() => {
         loadProperty()
@@ -24,6 +18,13 @@ function PropertyDetail() {
     }
 
     if (!property) return <p>Cargando...</p>
+
+    const phone = "5493516184580" // 👈 tu número nuevo (sin +)
+    const message = `Hola, quiero consultar por la propiedad:
+    🏠 ${property.title}
+    💰 $${property.price}
+    📍 ${property.city}
+    Link: ${window.location.href}`
 
     let images = property.images?.length
         ? property.images
