@@ -1,14 +1,11 @@
 import { FaWhatsapp } from "react-icons/fa"
 
 function WhatsAppButton() {
-
-    const phone = "5493516271526"
+    const phone = "5493516184580"
     const message = "Hola, quisiera consultar por una propiedad"
-
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`
 
     return (
-
         <a
             href={url}
             target="_blank"
@@ -29,7 +26,6 @@ function WhatsAppButton() {
         >
             <FaWhatsapp />
         </a>
-
     )
 }
 

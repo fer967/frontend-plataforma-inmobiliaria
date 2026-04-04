@@ -7,6 +7,12 @@ function PropertyDetail() {
 
     const { id } = useParams()
     const [property, setProperty] = useState(null)
+    const phone = "5493516184580" // 👈 tu número nuevo (sin +)
+    const message = `Hola, quiero consultar por la propiedad:
+    🏠 ${property.title}
+    💰 $${property.price}
+    📍 ${property.city}
+    Link: ${window.location.href}`
 
     useEffect(() => {
         loadProperty()
@@ -28,8 +34,6 @@ function PropertyDetail() {
     images = [...new Set(images)]
     // separar portada
     const mainImage = property.image_url || images[0]
-
-
     // thumbnails SIN la portada
     const galleryImages = images.filter(img => img !== mainImage)
 
@@ -50,7 +54,7 @@ function PropertyDetail() {
                 </p>
 
                 <a
-                    href={`https://wa.me/5493516271526?text=Hola, quiero consultar por la propiedad ${property.title}`}
+                    href={`https://wa.me/${phone}?text=${encodeURIComponent(message)}`}
                     target="_blank"
                     className="inline-block mt-4 bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600"
                 >
