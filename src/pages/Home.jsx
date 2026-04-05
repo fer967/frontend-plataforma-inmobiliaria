@@ -5,6 +5,9 @@ import { getProperties } from "../services/api"
 function Home() {
 
     const [properties, setProperties] = useState([])
+    const [operation, setOperation] = useState("")
+    const [type, setType] = useState("")
+    const [city, setCity] = useState("")
 
     useEffect(() => {
         loadProperties()
@@ -12,9 +15,16 @@ function Home() {
 
     const loadProperties = async () => {
         const data = await getProperties()
-
-        // solo destacadas
         setProperties(data.slice(0, 3))
+    }
+
+    const handleSearch = async () => {
+        const data = await getProperties({
+            operation,
+            property_type: type,
+            city
+        })
+        setProperties(data)
     }
 
     return (
@@ -28,24 +38,46 @@ function Home() {
             >
 
                 <div className="flex flex-col md:flex-row gap-3 justify-center">
-                    <select className="p-3 rounded text-black">
+
+                    <select
+                        className="p-3 rounded text-black"
+                        value={operation}
+                        onChange={(e) => setOperation(e.target.value)}
+                    >
                         <option value="">Operación</option>
                         <option value="venta">Venta</option>
                         <option value="alquiler">Alquiler</option>
                     </select>
-                    <select className="p-3 rounded text-black">
+
+                    <select
+                        className="p-3 rounded text-black"
+                        value={type}
+                        onChange={(e) => setType(e.target.value)}
+                    >
                         <option value="">Tipo</option>
                         <option value="casa">Casa</option>
                         <option value="departamento">Departamento</option>
                     </select>
+
                     <input
                         type="text"
                         placeholder="Ciudad..."
                         className="p-3 rounded text-black"
+                        value={city}
+                        onChange={(e) => setCity(e.target.value)}
                     />
-                    <button className="bg-blue-600 px-4 py-3 rounded text-white">
+
+                    <button
+                        onClick={handleSearch}
+                        className="bg-blue-600 px-4 py-3 rounded text-white"
+                    >
                         Buscar
                     </button>
+
+                    {properties.length === 0 && (
+                        <p>No se encontraron propiedades</p>
+                    )}
+
                 </div>
 
             </div>

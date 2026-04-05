@@ -1,10 +1,11 @@
 // const API_URL = "http://127.0.0.1:8000";
 const API_URL = import.meta.env.VITE_API_URL
 
-export const getProperties = async () => {
-    const response = await fetch(`${API_URL}/properties/`);
-    return response.json();
-};
+export const getProperties = async (filters = {}) => {
+    const params = new URLSearchParams(filters).toString()
+    const res = await fetch(`${API_URL}/properties?${params}`)
+    return res.json()
+}
 
 export const getProperty = async (id) => {
     const response = await fetch(`${API_URL}/properties/${id}`);
