@@ -57,6 +57,8 @@ function Home() {
                         <option value="">Tipo</option>
                         <option value="casa">Casa</option>
                         <option value="departamento">Departamento</option>
+                        <option value="terreno">Terreno</option>
+                        <option value="local">Local</option>
                     </select>
 
                     <input
