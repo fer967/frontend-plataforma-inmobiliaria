@@ -309,6 +309,7 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                     </div>
 
                     <button
+                        type="button"
                         onClick={() => navigate("/admin")}
                         className="mb-4 text-blue-600 underline"
                     >
