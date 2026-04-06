@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 
 function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
+    const navigate = useNavigate()
 
     const [title, setTitle] = useState(property?.title || "")
     const [description, setDescription] = useState(property?.description || "")
@@ -310,7 +312,7 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                         onClick={() => navigate("/dashboard")}
                         className="mb-4 text-blue-600 underline"
                     >
-                        ← Volver al dashboard
+                        Volver 
                     </button>
 
                     {/* volverbutton admin dashboard */}
