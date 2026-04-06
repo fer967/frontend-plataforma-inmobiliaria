@@ -114,7 +114,7 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                 formData.append("description", description)
                 formData.append("price", price)
                 formData.append("city", city)
-                
+
                 res = await fetch(
                     `${API_URL}/properties/${property.id}/with-images`,
                     {
@@ -339,13 +339,24 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                             >
                                 Ver estado en Rentas
                             </a>
-                            <a
+
+                            <button
+                                disabled={!cadastralNumber}
+                                onClick={() => window.open(`/idecor/kml/${cadastralNumber}`, "_blank")}
+                                className="bg-green-600 text-white px-4 py-2 rounded"
+                            >
+                                Ver en Google Earth
+                            </button>
+
+
+                            {/* <a
                                 href={`https://real-estate-platform-backend-pzzd.onrender.com/idecor/kml/${cadastralNumber}`}
                                 target="_blank"
                                 className="bg-green-600 text-white px-3 py-2 rounded w-full block text-center"
                             >
                                 Descargar KML (Google Earth)
-                            </a>
+                            </a> */}
+
                             <p>Lat: {parcelData.latitude}</p>
                             <p>Lng: {parcelData.longitude}</p>
 
