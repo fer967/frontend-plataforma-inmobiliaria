@@ -306,6 +306,16 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                         </button>
                     </div>
 
+                    <button
+                        onClick={() => navigate("/dashboard")}
+                        className="mb-4 text-blue-600 underline"
+                    >
+                        ← Volver al dashboard
+                    </button>
+
+                    {/* volverbutton admin dashboard */}
+                    {/* ver hacer en otra vista -->  por ej: consultar */}
+
                     <input
                         type="text"
                         placeholder="N° de cuenta"
@@ -313,6 +323,7 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                         value={cadastralNumber}
                         onChange={(e) => setCadastralNumber(e.target.value)}
                     />
+
 
                     <button
                         type="button"
