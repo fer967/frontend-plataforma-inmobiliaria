@@ -342,7 +342,7 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
 
                             <button
                                 disabled={!cadastralNumber}
-                                onClick={() => window.open(`/idecor/kml/${cadastralNumber}`, "_blank")}
+                                onClick={() => window.open(`${API_URL}/idecor/kml/${cadastralNumber}`, "_blank")}
                                 className="bg-green-600 text-white px-4 py-2 rounded"
                             >
                                 Ver en Google Earth
