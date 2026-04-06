@@ -324,16 +324,16 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
 
                     {parcelData?.idecor && (
                         <div className="mt-4 text-sm bg-gray-50 p-3 rounded space-y-1">
-                            <p><b>Cuenta:</b> {parcelData.idecor.cuenta}</p>
+                            {/* <p><b>Cuenta:</b> {parcelData.idecor.cuenta}</p>
                             <p><b>Nomenclatura:</b> {parcelData.idecor.nomenclatura}</p>
                             <p><b>Designación:</b> {parcelData.idecor.designacion}</p>
                             <p><b>Tipo:</b> {parcelData.idecor.tipo_inmueble}</p>
                             <p><b>Estado:</b> {parcelData.idecor.estado}</p>
                             <p><b>Sup. Terreno:</b> {parcelData.idecor.superficie_terreno} m²</p>
                             <p><b>Sup. Edificada:</b> {parcelData.idecor.superficie_mejoras} m²</p>
-                            <p><b>Valuación:</b> ${parcelData.idecor.valuacion_total}</p>
+                            <p><b>Valuación:</b> ${parcelData.idecor.valuacion_total}</p> */}
                             <a
-                                href={`https://www.rentascordoba.gob.ar/cs/${parcelData.idecor.cuenta}`}
+                                href={`https://www.rentascordoba.gob.ar/gestiones/informe/detalle/inmueble?cuenta=${parcelData.idecor.cuenta}`}
                                 target="_blank"
                                 className="text-blue-600 underline"
                             >
@@ -347,15 +347,6 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                             >
                                 Ver en Google Earth
                             </button>
-
-
-                            {/* <a
-                                href={`https://real-estate-platform-backend-pzzd.onrender.com/idecor/kml/${cadastralNumber}`}
-                                target="_blank"
-                                className="bg-green-600 text-white px-3 py-2 rounded w-full block text-center"
-                            >
-                                Descargar KML (Google Earth)
-                            </a> */}
 
                             <p>Lat: {parcelData.latitude}</p>
                             <p>Lng: {parcelData.longitude}</p>
@@ -372,6 +363,8 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
 export default CreatePropertyModal
 
 
+
+https://www.rentascordoba.gob.ar/gestiones/informe/detalle/inmueble
 
 
 // import PropertyMap from "./PropertyMap"
