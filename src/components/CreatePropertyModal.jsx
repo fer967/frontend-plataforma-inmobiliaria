@@ -309,87 +309,19 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
 
                     <button
                         type="button"
+                        onClick={onClose}
+                        className="bg-blue-400 text-white px-4 py-2 rounded"
+                        >
+                        Volver
+                    </button>
+
+                    {/* <button
+                        type="button"
                         onClick={() => navigate("/admin")}
                         className="mb-4 text-blue-600 underline"
                     >
                         Volver 
-                    </button>
-
-
-                    <input
-                        type="text"
-                        placeholder="N° de cuenta"
-                        className="w-full border p-2"
-                        value={cadastralNumber}
-                        onChange={(e) => setCadastralNumber(e.target.value)}
-                    />
-
-
-
-                    {/* <button
-                        type="button"
-                        onClick={buscarParcela}
-                        className="bg-purple-600 text-white px-3 py-2 rounded w-full"
-                    >
-                        Buscar en IDECOR
-                    </button>
-
-                    {parcelData?.idecor && (
-                        <div className="mt-4 text-sm bg-gray-50 p-3 rounded space-y-1">
-                            <p><b>Cuenta:</b> {parcelData.idecor.cuenta}</p>
-                            <p><b>Nomenclatura:</b> {parcelData.idecor.nomenclatura}</p>
-                            <p><b>Designación:</b> {parcelData.idecor.designacion}</p>
-                            <p><b>Tipo:</b> {parcelData.idecor.tipo_inmueble}</p>
-                            <p><b>Estado:</b> {parcelData.idecor.estado}</p>
-                            <p><b>Sup. Terreno:</b> {parcelData.idecor.superficie_terreno} m²</p>
-                            <p><b>Sup. Edificada:</b> {parcelData.idecor.superficie_mejoras} m²</p>
-                            <p><b>Valuación:</b> ${parcelData.idecor.valuacion_total}</p>
-
-                            <div className="space-y-2 mt-2">
-
-                                {/* 📄 INFORME DETALLADO */}
-                                {/* <button
-                                    onClick={() => {
-                                        navigator.clipboard.writeText(parcelData.idecor.cuenta)
-                                        window.open(
-                                            "https://www.rentascordoba.gob.ar/gestiones/informe/detalle/inmueble",
-                                            "_blank"
-                                        )
-                                    }}
-                                    className="bg-blue-600 text-white px-3 py-2 rounded w-full"
-                                >
-                                    📄 Informe impositivo (copia N° cuenta) */}
-                                {/* </button>
-
-                                {/* 💳 VER DEUDA / PAGAR */}
-                                {/* <button
-                                    onClick={() => {
-                                        navigator.clipboard.writeText(parcelData.idecor.cuenta)
-                                        window.open(
-                                            "https://www.rentascordoba.gob.ar/emision/ver-y-pagar/inmobiliario",
-                                            "_blank"
-                                        )
-                                    }}
-                                    className="bg-yellow-600 text-white px-3 py-2 rounded w-full"
-                                >
-                                    💳 Ver deuda / pagar (copia N° cuenta)
-                                </button> */ }
-
-                            {/* </div>
-
-                            <button
-                                disabled={!cadastralNumber}
-                                onClick={() => window.open(`${API_URL}/idecor/kml/${cadastralNumber}`, "_blank")}
-                                className="bg-green-600 text-white px-4 py-2 rounded"
-                            >
-                                Ver en Google Earth
-                            </button>
-
-                            <p>Lat: {parcelData.latitude}</p>
-                            <p>Lng: {parcelData.longitude}</p>
-
-                        </div> */}
-
+                    </button> */}
 
 
                 </form>
