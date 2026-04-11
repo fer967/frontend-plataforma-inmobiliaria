@@ -49,6 +49,13 @@ function AdminDashboard() {
                 Consultar IDECOR
             </button>
 
+            <button
+                onClick={() => navigate("/admin/contacts")}
+                className="bg-blue-600 text-white px-4 py-2 rounded"
+            >
+                Ver contactos
+            </button>
+
             <CreatePropertyModal
                 isOpen={showModal}
                 property={selectedProperty}
