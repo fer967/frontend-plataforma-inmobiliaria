@@ -13,7 +13,7 @@ export default function AdminContacts() {
 
     const fetchContacts = async () => {
         try {
-            const res = await fetch(`${API_URL}/contacts`);
+            const res = await fetch(`${API_URL}/leads/contacts`);
             const data = await res.json();
             setContacts(data);
         } catch (err) {
