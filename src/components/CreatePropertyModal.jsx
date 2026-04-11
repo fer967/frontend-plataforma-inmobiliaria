@@ -116,7 +116,6 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                 formData.append("description", description)
                 formData.append("price", price)
                 formData.append("city", city)
-
                 res = await fetch(
                     `${API_URL}/properties/${property.id}/with-images`,
                     {
@@ -316,8 +315,6 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                         Volver 
                     </button>
 
-                    {/* volverbutton admin dashboard */}
-                    {/* ver hacer en otra vista -->  por ej: consultar */}
 
                     <input
                         type="text"
@@ -328,7 +325,8 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                     />
 
 
-                    <button
+
+                    {/* <button
                         type="button"
                         onClick={buscarParcela}
                         className="bg-purple-600 text-white px-3 py-2 rounded w-full"
@@ -350,7 +348,7 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                             <div className="space-y-2 mt-2">
 
                                 {/* 📄 INFORME DETALLADO */}
-                                <button
+                                {/* <button
                                     onClick={() => {
                                         navigator.clipboard.writeText(parcelData.idecor.cuenta)
                                         window.open(
@@ -360,11 +358,11 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                                     }}
                                     className="bg-blue-600 text-white px-3 py-2 rounded w-full"
                                 >
-                                    📄 Informe impositivo (copia N° cuenta)
-                                </button>
+                                    📄 Informe impositivo (copia N° cuenta) */}
+                                {/* </button>
 
                                 {/* 💳 VER DEUDA / PAGAR */}
-                                <button
+                                {/* <button
                                     onClick={() => {
                                         navigator.clipboard.writeText(parcelData.idecor.cuenta)
                                         window.open(
@@ -375,9 +373,9 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                                     className="bg-yellow-600 text-white px-3 py-2 rounded w-full"
                                 >
                                     💳 Ver deuda / pagar (copia N° cuenta)
-                                </button>
+                                </button> */ }
 
-                            </div>
+                            {/* </div>
 
                             <button
                                 disabled={!cadastralNumber}
@@ -390,8 +388,9 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                             <p>Lat: {parcelData.latitude}</p>
                             <p>Lng: {parcelData.longitude}</p>
 
-                        </div>
-                    )}
+                        </div> */}
+
+
 
                 </form>
             </div>

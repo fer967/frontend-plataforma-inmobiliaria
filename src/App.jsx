@@ -12,6 +12,7 @@ import AdminLayout from "./admin/AdminLayout"
 import AdminDashboard from "./admin/AdminDashboard"
 import AdminProperties from "./admin/AdminProperties"
 import AdminLeads from "./admin/AdminLeads"
+import AdminIdecor from "./admin/AdminIdecor"
 import { useContext } from "react"
 import { AuthContext } from "./context/AuthContext"
 import { Navigate } from "react-router-dom"
@@ -47,6 +48,7 @@ function App() {
           <Route index element={<AdminDashboard />} />
           <Route path="properties" element={<AdminProperties />} />
           <Route path="leads" element={<AdminLeads />} />
+          <Route path="idecor" element={<AdminIdecor />} />
         </Route>
         <Route
           path="/privacy"

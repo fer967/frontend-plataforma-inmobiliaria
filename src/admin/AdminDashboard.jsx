@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react"
 import CreatePropertyModal from "../components/CreatePropertyModal"
+import { useNavigate } from "react-router-dom"
 
 function AdminDashboard() {
+    const navigate = useNavigate()
 
     const [properties, setProperties] = useState([])
     const [showModal, setShowModal] = useState(false)
@@ -39,6 +41,14 @@ function AdminDashboard() {
             >
                 + Nueva Propiedad
             </button>
+
+            <button
+                onClick={() => navigate("/admin/idecor")}
+                className="bg-purple-600 text-white px-4 py-2 rounded"
+            >
+                Consultar IDECOR
+            </button>
+
             <CreatePropertyModal
                 isOpen={showModal}
                 property={selectedProperty}
