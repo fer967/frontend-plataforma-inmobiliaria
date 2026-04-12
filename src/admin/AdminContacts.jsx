@@ -17,7 +17,7 @@ function AdminContacts() {
 
     // 🔹 cargar mensajes del contacto
     async function loadMessages(contactId) {
-        const res = await fetch(`${API_URL}/leads/leads/contact/${contactId}`)
+        const res = await fetch(`${API_URL}/leads/contact/${contactId}`)
         const data = await res.json()
         setMessages(data)
     }
