@@ -4,11 +4,9 @@ import { useNavigate } from "react-router-dom"
 
 function AdminDashboard() {
     const navigate = useNavigate()
-
     const [properties, setProperties] = useState([])
     const [showModal, setShowModal] = useState(false)
     const [selectedProperty, setSelectedProperty] = useState(null)
-
     // const API_URL = "http://127.0.0.1:8000";
     const API_URL = import.meta.env.VITE_API_URL
 

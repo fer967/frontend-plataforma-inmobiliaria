@@ -43,6 +43,26 @@ function AdminLeads() {
         return lead.status === filter
     })
 
+    async function analyzeLead(lead) {
+        try {
+            const res = await fetch(
+                `${API_URL}/analysis?city=${encodeURIComponent(lead.message)}&type=${lead.property_type}`
+            )
+            const data = await res.json()
+            alert(`
+    📊 Análisis de mercado
+    Promedio: USD ${data.avg_price}
+    Mín: USD ${data.min_price}
+    Máx: USD ${data.max_price}
+    Precio/m²: USD ${data.avg_m2}
+    Muestra: ${data.count}
+        `)
+        } catch (err) {
+            console.error(err)
+            alert("Error al analizar")
+        }
+    }
+
     return (
         <div className="p-4 md:p-8 max-w-7xl mx-auto">
             <h1 className="text-2xl md:text-3xl font-bold mb-6">
@@ -73,6 +93,14 @@ function AdminLeads() {
                 >
                     Cerrados
                 </button>
+
+                <button
+                    onClick={() => analyzeLead(lead)}
+                    className="mt-2 bg-indigo-600 text-white px-3 py-1 rounded"
+                >
+                    Analizar mercado
+                </button>
+
             </div>
             {/* DESKTOP */}
             <div className="hidden md:block overflow-x-auto">
