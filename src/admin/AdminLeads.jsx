@@ -43,10 +43,12 @@ function AdminLeads() {
         return lead.status === filter
     })
 
+
     async function analyzeLead(lead) {
         try {
             const res = await fetch(
-                `${API_URL}/analysis?city=${encodeURIComponent(lead.message)}&type=${lead.property_type}`
+                `${API_URL} /analysis/from-lead?message=${encodeURIComponent(lead.message)}`
+                // `${API_URL}/analysis?city=${encodeURIComponent(lead.message)}&type=${lead.property_type}`
             )
             const data = await res.json()
             alert(`
@@ -62,6 +64,7 @@ function AdminLeads() {
             alert("Error al analizar")
         }
     }
+
 
     return (
         <div className="p-4 md:p-8 max-w-7xl mx-auto">
