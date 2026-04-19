@@ -61,12 +61,6 @@ function AdminLeads() {
                 return
             }
 
-            // const data = await res.json()
-            // if (data.error) {
-            //     alert("No hay datos suficientes para analizar")
-            //     return
-            // }
-
             console.log("ANALYSIS RESPONSE:", data)
 
             alert(`
