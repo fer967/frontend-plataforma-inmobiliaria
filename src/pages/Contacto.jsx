@@ -10,13 +10,14 @@ function Contacto() {
     })
 
     const [success, setSuccess] = useState(false)
-
     const [errors, setErrors] = useState({})
 
     function validate() {
         const newErrors = {}
         if (!form.name.trim()) {
             newErrors.name = "El nombre es obligatorio"
+        } else if (!/^[a-zA-ZÁÉÍÓÚáéíóúñÑ0-9\s]+$/.test(form.name)) {
+            newErrors.name = "El nombre contiene caracteres inválidos"
         }
         if (!form.phone.trim()) {
             newErrors.phone = "El teléfono es obligatorio"
@@ -74,7 +75,7 @@ function Contacto() {
                 </p>
             )}
             <form onSubmit={handleSubmit} className="space-y-4">
-                <input name="name" placeholder="Nombre" className="w-full border p-2" onChange={handleChange} value={form.name} required />
+                <input name="name" placeholder="Ingrese su nombre" className="w-full border p-2" onChange={handleChange} value={form.name} required />
                 <input name="email" placeholder="Email" className="w-full border p-2" onChange={handleChange} value={form.email} />
                 {errors.email && (
                     <p className="text-red-500 text-sm">{errors.email}</p>

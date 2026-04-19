@@ -18,6 +18,8 @@ function Tasaciones() {
         const newErrors = {}
         if (!form.name.trim()) {
             newErrors.name = "El nombre es obligatorio"
+        } else if (!/^[a-zA-ZÁÉÍÓÚáéíóúñÑ0-9\s]+$/.test(form.name)) {
+            newErrors.name = "El nombre contiene caracteres inválidos"
         }
         if (!form.phone.trim()) {
             newErrors.phone = "El teléfono es obligatorio"
@@ -83,7 +85,6 @@ Detalle: ${form.message}
             <h1 className="text-3xl font-bold mb-6">
                 Quiero tasar mi Propiedad
             </h1>
-
             <form onSubmit={handleSubmit} className="space-y-4">
                 <input
                     name="name"
@@ -98,7 +99,6 @@ Detalle: ${form.message}
                         {errors.name}
                     </p>
                 )}
-
                 <input
                     name="phone"
                     placeholder="Teléfono"
@@ -107,15 +107,12 @@ Detalle: ${form.message}
                     onChange={handleChange}
                     value={form.phone}
                 />
-
                 {errors.phone && (
                     <p className="text-red-500 text-sm mt-1">
                         {errors.phone}
                     </p>
                 )}
-
-                {/* <input name="name" placeholder="Ingrese su nombre" className="w-full border p-2" onChange={handleChange} value={form.name} required /> */}
-                {/* <input name="phone" placeholder="Teléfono" className="w-full border p-2" onChange={handleChange} value={form.phone} required /> */}
+                
                 <input name="city" placeholder="Ciudad" className="w-full border p-2" onChange={handleChange} value={form.city} />
                 <select name="type" className="w-full border p-2" onChange={handleChange} value={form.type}>
                     <option value="">Tipo propiedad</option>
