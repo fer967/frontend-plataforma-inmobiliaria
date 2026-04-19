@@ -36,9 +36,7 @@ function Home() {
                         "url('https://images.unsplash.com/photo-1560518883-ce09059eeffa')"
                 }}
             >
-
                 <div className="flex flex-col md:flex-row gap-3 justify-center">
-
                     <select
                         className="p-3 rounded text-black"
                         value={operation}
@@ -48,7 +46,6 @@ function Home() {
                         <option value="venta">Venta</option>
                         <option value="alquiler">Alquiler</option>
                     </select>
-
                     <select
                         className="p-3 rounded text-black"
                         value={type}
@@ -60,7 +57,6 @@ function Home() {
                         <option value="terreno">Terreno</option>
                         <option value="local">Local</option>
                     </select>
-
                     <input
                         type="text"
                         placeholder="Ciudad..."
@@ -68,20 +64,16 @@ function Home() {
                         value={city}
                         onChange={(e) => setCity(e.target.value)}
                     />
-
                     <button
                         onClick={handleSearch}
                         className="bg-blue-600 px-4 py-3 rounded text-white"
                     >
                         Buscar
                     </button>
-
                     {properties.length === 0 && (
                         <p>No se encontraron propiedades</p>
                     )}
-
                 </div>
-
             </div>
             {/* PROPIEDADES DESTACADAS */}
             <div className="max-w-7xl mx-auto p-8">
