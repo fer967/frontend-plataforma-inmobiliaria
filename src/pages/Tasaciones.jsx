@@ -10,11 +10,8 @@ function Tasaciones() {
         type: "",
         message: ""
     })
-
     const [success, setSuccess] = useState(false)
-
     const [loading, setLoading] = useState(false)
-
     const [errors, setErrors] = useState({})
 
     function validate() {
@@ -84,15 +81,15 @@ Detalle: ${form.message}
     return (
         <div className="p-8 max-w-xl mx-auto">
             <h1 className="text-3xl font-bold mb-6">
-                Tasar mi propiedad
+                Quiero tasar mi Propiedad
             </h1>
             {success && (
                 <p className="bg-green-100 text-green-700 p-3 mb-4 rounded">
-                    Solicitud enviada
+                    Solicitud enviada, un asesor lo contactara en breve, muchas gracias por confiar en nosotros!
                 </p>
             )}
             <form onSubmit={handleSubmit} className="space-y-4">
-                <input name="name" placeholder="Nombre" className="w-full border p-2" onChange={handleChange} value={form.name} required />
+                <input name="name" placeholder="Ingrese su nombre" className="w-full border p-2" onChange={handleChange} value={form.name} required />
                 <input name="phone" placeholder="Teléfono" className="w-full border p-2" onChange={handleChange} value={form.phone} required />
                 <input name="city" placeholder="Ciudad" className="w-full border p-2" onChange={handleChange} value={form.city} />
                 <select name="type" className="w-full border p-2" onChange={handleChange} value={form.type}>
@@ -101,7 +98,7 @@ Detalle: ${form.message}
                     <option value="departamento">Departamento</option>
                     <option value="terreno">Terreno</option>
                 </select>
-                <textarea name="message" placeholder="Detalles adicionales" className="w-full border p-2" onChange={handleChange} value={form.message} />
+                <textarea name="message" placeholder="Detalles adicionales de su propiedad" className="w-full border p-2" onChange={handleChange} value={form.message} />
                 <button
                     disabled={loading}
                     className={`px-4 py-2 rounded w-full text-white 

@@ -48,9 +48,9 @@ function Home() {
                             value={operation}
                             onChange={(e) => setOperation(e.target.value)}
                         >
-                            <option value="">Operación</option>
-                            <option value="venta">Venta</option>
-                            <option value="alquiler">Alquiler</option>
+                            <option value="">Tipo de Operación</option>
+                            <option value="venta">Consulta por propiedades en Venta</option>
+                            <option value="alquiler">Consulta por propiedades en Alquiler</option>
                         </select>
 
                         <select
@@ -58,7 +58,7 @@ function Home() {
                             value={type}
                             onChange={(e) => setType(e.target.value)}
                         >
-                            <option value="">Tipo</option>
+                            <option value="">Tipo de propiedad</option>
                             <option value="casa">Casa</option>
                             <option value="departamento">Departamento</option>
                             <option value="terreno">Terreno</option>

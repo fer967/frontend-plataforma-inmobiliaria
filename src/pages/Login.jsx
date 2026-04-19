@@ -36,7 +36,7 @@ function Login() {
                 className="bg-white p-8 rounded shadow w-full max-w-sm"
             >
                 <h1 className="text-2xl font-bold mb-6 text-center">
-                    Ingresar
+                    Solo Administrador
                 </h1>
 
                 <input
