@@ -59,7 +59,7 @@ Detalle: ${form.message}
                 })
             })
             if (res.ok) {
-                toast.success("Solicitud enviada correctamente 🚀")
+                toast.success("Solicitud enviada. Te contactamos en breve 📞")
                 setForm({
                     name: "",
                     phone: "",
@@ -83,14 +83,39 @@ Detalle: ${form.message}
             <h1 className="text-3xl font-bold mb-6">
                 Quiero tasar mi Propiedad
             </h1>
-            {success && (
-                <p className="bg-green-100 text-green-700 p-3 mb-4 rounded">
-                    Solicitud enviada, un asesor lo contactara en breve, muchas gracias por confiar en nosotros!
-                </p>
-            )}
+
             <form onSubmit={handleSubmit} className="space-y-4">
-                <input name="name" placeholder="Ingrese su nombre" className="w-full border p-2" onChange={handleChange} value={form.name} required />
-                <input name="phone" placeholder="Teléfono" className="w-full border p-2" onChange={handleChange} value={form.phone} required />
+                <input
+                    name="name"
+                    placeholder="Ingrese su nombre"
+                    className={`w-full p-2 rounded border ${errors.name ? "border-red-500" : "border-gray-300"
+                        }`}
+                    onChange={handleChange}
+                    value={form.name}
+                />
+                {errors.name && (
+                    <p className="text-red-500 text-sm mt-1">
+                        {errors.name}
+                    </p>
+                )}
+
+                <input
+                    name="phone"
+                    placeholder="Teléfono"
+                    className={`w-full p-2 rounded border ${errors.phone ? "border-red-500" : "border-gray-300"
+                        }`}
+                    onChange={handleChange}
+                    value={form.phone}
+                />
+
+                {errors.phone && (
+                    <p className="text-red-500 text-sm mt-1">
+                        {errors.phone}
+                    </p>
+                )}
+
+                {/* <input name="name" placeholder="Ingrese su nombre" className="w-full border p-2" onChange={handleChange} value={form.name} required /> */}
+                {/* <input name="phone" placeholder="Teléfono" className="w-full border p-2" onChange={handleChange} value={form.phone} required /> */}
                 <input name="city" placeholder="Ciudad" className="w-full border p-2" onChange={handleChange} value={form.city} />
                 <select name="type" className="w-full border p-2" onChange={handleChange} value={form.type}>
                     <option value="">Tipo propiedad</option>
