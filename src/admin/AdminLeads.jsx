@@ -47,17 +47,20 @@ function AdminLeads() {
     async function analyzeLead(lead) {
         try {
             const res = await fetch(
-                `${API_URL} /analysis/from-lead?message=${encodeURIComponent(lead.message)}`
-                // `${API_URL}/analysis?city=${encodeURIComponent(lead.message)}&type=${lead.property_type}`
+                `${API_URL}/analysis/from-lead?message=${encodeURIComponent(lead.message)}`
             )
             const data = await res.json()
+            if (data.error) {
+                alert("No hay datos suficientes para analizar")
+                return
+            }
             alert(`
-    📊 Análisis de mercado
-    Promedio: USD ${data.avg_price}
-    Mín: USD ${data.min_price}
-    Máx: USD ${data.max_price}
-    Precio/m²: USD ${data.avg_m2}
-    Muestra: ${data.count}
+📊 Análisis de mercado
+Promedio: USD ${data.avg_price}
+Mín: USD ${data.min_price}
+Máx: USD ${data.max_price}
+Precio/m²: USD ${data.avg_m2}
+Muestra: ${data.count}
         `)
         } catch (err) {
             console.error(err)
@@ -96,15 +99,8 @@ function AdminLeads() {
                 >
                     Cerrados
                 </button>
-
-                <button
-                    onClick={() => analyzeLead(lead)}
-                    className="mt-2 bg-indigo-600 text-white px-3 py-1 rounded"
-                >
-                    Analizar mercado
-                </button>
-
             </div>
+
             {/* DESKTOP */}
             <div className="hidden md:block overflow-x-auto">
                 <table className="w-full bg-white shadow rounded">
@@ -116,6 +112,7 @@ function AdminLeads() {
                             <th className="p-3 text-left">Fuente</th>
                             <th className="p-3 text-left">Fecha</th>
                             <th className="p-3 text-left">Estado</th>
+                            <th className="p-3 text-left">Análisis</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -142,11 +139,22 @@ function AdminLeads() {
                                         <option value="closed">Cerrado</option>
                                     </select>
                                 </td>
+
+                                <td className="p-3">
+                                    <button
+                                        onClick={() => analyzeLead(lead)}
+                                        className="bg-indigo-600 text-white px-2 py-1 rounded text-xs"
+                                    >
+                                        Analizar
+                                    </button>
+                                </td>
+
                             </tr>
                         ))}
                     </tbody>
                 </table>
             </div>
+
             {/* MOBILE */}
             <div className="md:hidden space-y-4">
                 {filteredLeads.map((lead) => (
@@ -175,6 +183,14 @@ function AdminLeads() {
                             <option value="contacted">Contactado</option>
                             <option value="closed">Cerrado</option>
                         </select>
+
+                        <button
+                            onClick={() => analyzeLead(lead)}
+                            className="mt-2 bg-indigo-600 text-white px-3 py-1 rounded w-full"
+                        >
+                            Analizar mercado
+                        </button>
+
                     </div>
                 ))}
             </div>
