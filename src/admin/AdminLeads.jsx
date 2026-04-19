@@ -54,6 +54,7 @@ function AdminLeads() {
                 alert("No hay datos suficientes para analizar")
                 return
             }
+            console.log("ANALYSIS RESPONSE:", data)
             alert(`
 📊 Análisis de mercado
 Promedio: USD ${data.avg_price}
