@@ -50,7 +50,6 @@ function AdminLeads() {
             const res = await fetch(
                 `${API_URL}/analysis/from-lead?message=${encodeURIComponent(lead.message)}`
             )
-
             const data = await res.json()
             if (!data) {
                 alert("No se pudo obtener análisis")
@@ -60,40 +59,15 @@ function AdminLeads() {
                 alert("No hay datos suficientes")
                 return
             }
-
             console.log("ANALYSIS RESPONSE:", data)
-
             alert(`
     📊 Análisis de mercado
-
     Promedio: USD ${data.avg_price || data.avg}
     Mín: USD ${data.min_price || data.min}
     Máx: USD ${data.max_price || data.max}
     Precio/m²: USD ${data.avg_m2 || "-"}
     Muestra: ${data.count || "-"}
             `)
-
-            // setAnalysis(data)
-            // {
-            //     analysis && (
-            //         <div className="mt-4 p-4 bg-gray-100 rounded">
-            //             <h3 className="font-bold mb-2">📊 Análisis</h3>
-            //             <p>Promedio: USD {analysis.avg_price}</p>
-            //             <p>Rango: {analysis.min_price} - {analysis.max_price}</p>
-            //             <p>Precio/m²: USD {analysis.avg_m2}</p>
-            //         </div>
-            //     )
-            // }
-
-            //             alert(`
-            // 📊 Análisis de mercado
-            // Promedio: USD ${data.avg_price}
-            // Mín: USD ${data.min_price}
-            // Máx: USD ${data.max_price}
-            // Precio/m²: USD ${data.avg_m2}
-            // Muestra: ${data.count}
-            //         `)
-
         } catch (err) {
             console.error(err)
             alert("Error al analizar")
@@ -107,30 +81,35 @@ function AdminLeads() {
                 Leads
             </h1>
             <div className="flex flex-wrap gap-2 mb-6">
+
                 <button
                     onClick={() => setFilter("all")}
                     className={`px-3 py-1 rounded ${filter === "all" ? "bg-black text-white" : "bg-gray-200"}`}
                 >
                     Todos
                 </button>
+
                 <button
                     onClick={() => setFilter("new")}
                     className={`px-3 py-1 rounded ${filter === "new" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
                 >
                     Nuevos
                 </button>
+
                 <button
                     onClick={() => setFilter("contacted")}
                     className={`px-3 py-1 rounded ${filter === "contacted" ? "bg-yellow-500 text-white" : "bg-gray-200"}`}
                 >
                     Contactados
                 </button>
+
                 <button
                     onClick={() => setFilter("closed")}
                     className={`px-3 py-1 rounded ${filter === "closed" ? "bg-green-600 text-white" : "bg-gray-200"}`}
                 >
                     Cerrados
                 </button>
+
             </div>
 
             {/* DESKTOP */}
@@ -153,13 +132,18 @@ function AdminLeads() {
                                 <td className="p-3">{lead.name}</td>
                                 <td className="p-3">{lead.phone}</td>
                                 <td className="p-3">{lead.message}</td>
-                                <td className="p-3">{lead.source}</td>
+
+                                <td className="p-3">{lead.source || "-"}</td>
+
                                 <td className="p-3">
-                                    {new Date(lead.created_at).toLocaleString()}
+                                    {lead.created_at
+                                        ? new Date(lead.created_at).toLocaleString()
+                                        : "-"}
                                 </td>
+
                                 <td className="p-3 space-y-1">
                                     <span className={`text-white px-2 py-1 rounded text-xs ${getStatusColor(lead.status)}`}>
-                                        {lead.status}
+                                        {lead.status || "new"}
                                     </span>
                                     <select
                                         value={lead.status}
@@ -171,7 +155,6 @@ function AdminLeads() {
                                         <option value="closed">Cerrado</option>
                                     </select>
                                 </td>
-
                                 <td className="p-3">
                                     <button
                                         onClick={() => analyzeLead(lead)}
@@ -180,7 +163,6 @@ function AdminLeads() {
                                         Analizar
                                     </button>
                                 </td>
-
                             </tr>
                         ))}
                     </tbody>
@@ -215,14 +197,12 @@ function AdminLeads() {
                             <option value="contacted">Contactado</option>
                             <option value="closed">Cerrado</option>
                         </select>
-
                         <button
                             onClick={() => analyzeLead(lead)}
                             className="mt-2 bg-indigo-600 text-white px-3 py-1 rounded w-full"
                         >
                             Analizar mercado
                         </button>
-
                     </div>
                 ))}
             </div>
@@ -231,6 +211,30 @@ function AdminLeads() {
 }
 
 export default AdminLeads
+
+
+
+
+// setAnalysis(data)
+// {
+//     analysis && (
+//         <div className="mt-4 p-4 bg-gray-100 rounded">
+//             <h3 className="font-bold mb-2">📊 Análisis</h3>
+//             <p>Promedio: USD {analysis.avg_price}</p>
+//             <p>Rango: {analysis.min_price} - {analysis.max_price}</p>
+//             <p>Precio/m²: USD {analysis.avg_m2}</p>
+//         </div>
+//     )
+// }
+
+//             alert(`
+// 📊 Análisis de mercado
+// Promedio: USD ${data.avg_price}
+// Mín: USD ${data.min_price}
+// Máx: USD ${data.max_price}
+// Precio/m²: USD ${data.avg_m2}
+// Muestra: ${data.count}
+//         `)
 
 
 
