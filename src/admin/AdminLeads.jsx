@@ -25,6 +25,7 @@ function AdminLeads() {
     const [leads, setLeads] = useState([])
     const [filter, setFilter] = useState("all")
     const [analysis, setAnalysis] = useState(null)
+    const [selectedLead, setSelectedLead] = useState(null)
 
     useEffect(() => {
         loadLeads()
@@ -112,7 +113,6 @@ function AdminLeads() {
                     Cerrados
                 </button>
             </div>
-
             {/* DESKTOP */}
             <div className="hidden md:block overflow-x-auto">
                 <table className="w-full bg-white shadow rounded">
@@ -132,12 +132,17 @@ function AdminLeads() {
                             <tr key={lead.id} className="border-t">
                                 <td className="p-3">{lead.name}</td>
                                 <td className="p-3">{lead.phone}</td>
-                                <td className="p-3">{lead.message}</td>
-
+                                <td className="p-3 max-w-xs">
+                                    <div
+                                        className="truncate cursor-pointer text-blue-600"
+                                        onClick={() => setSelectedLead(lead)}
+                                        title="Ver mensaje completo"
+                                    >
+                                        {lead.message}
+                                    </div>
+                                </td>
                                 <td className="p-3">{lead.source || "-"}</td>
-
                                 <td className="p-3">{formatDate(lead.created_at)}</td>
-
                                 <td className="p-3 space-y-1">
                                     <span className={`text-white px-2 py-1 rounded text-xs ${getStatusColor(lead.status)}`}>
                                         {lead.status || "new"}
@@ -165,7 +170,6 @@ function AdminLeads() {
                     </tbody>
                 </table>
             </div>
-
             {/* MOBILE */}
             <div className="md:hidden space-y-4">
                 {filteredLeads.map((lead) => (
@@ -203,6 +207,24 @@ function AdminLeads() {
                     </div>
                 ))}
             </div>
+            {selectedLead && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                    <div className="bg-white p-6 rounded shadow max-w-lg w-full">
+                        <h2 className="text-xl font-bold mb-4">
+                            Mensaje completo
+                        </h2>
+                        <p className="mb-4 whitespace-pre-wrap break-words">
+                            {selectedLead.message}
+                        </p>
+                        <button
+                            onClick={() => setSelectedLead(null)}
+                            className="bg-gray-800 text-white px-4 py-2 rounded w-full"
+                        >
+                            Cerrar
+                        </button>
+                    </div>
+                </div>
+            )}
         </div>
     )
 }
@@ -210,13 +232,13 @@ function AdminLeads() {
 export default AdminLeads
 
 
-    // < td className = "p-3" >
-    // {
-    //     lead.created_at
-    //         ? new Date(lead.created_at).toLocaleString()
-    //         : "-"
-    // }
-    // </ >
+// < td className = "p-3" >
+// {
+//     lead.created_at
+//         ? new Date(lead.created_at).toLocaleString()
+//         : "-"
+// }
+// </ >
 
 
 
