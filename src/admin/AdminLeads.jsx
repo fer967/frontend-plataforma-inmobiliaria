@@ -14,6 +14,12 @@ function getStatusColor(status) {
     }
 }
 
+function formatDate(date) {
+    if (!date) return "-"
+    const d = new Date(date)
+    return isNaN(d.getTime()) ? "-" : d.toLocaleString()
+}
+
 function AdminLeads() {
 
     const [leads, setLeads] = useState([])
@@ -81,35 +87,30 @@ function AdminLeads() {
                 Leads
             </h1>
             <div className="flex flex-wrap gap-2 mb-6">
-
                 <button
                     onClick={() => setFilter("all")}
                     className={`px-3 py-1 rounded ${filter === "all" ? "bg-black text-white" : "bg-gray-200"}`}
                 >
                     Todos
                 </button>
-
                 <button
                     onClick={() => setFilter("new")}
                     className={`px-3 py-1 rounded ${filter === "new" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
                 >
                     Nuevos
                 </button>
-
                 <button
                     onClick={() => setFilter("contacted")}
                     className={`px-3 py-1 rounded ${filter === "contacted" ? "bg-yellow-500 text-white" : "bg-gray-200"}`}
                 >
                     Contactados
                 </button>
-
                 <button
                     onClick={() => setFilter("closed")}
                     className={`px-3 py-1 rounded ${filter === "closed" ? "bg-green-600 text-white" : "bg-gray-200"}`}
                 >
                     Cerrados
                 </button>
-
             </div>
 
             {/* DESKTOP */}
@@ -135,11 +136,7 @@ function AdminLeads() {
 
                                 <td className="p-3">{lead.source || "-"}</td>
 
-                                <td className="p-3">
-                                    {lead.created_at
-                                        ? new Date(lead.created_at).toLocaleString()
-                                        : "-"}
-                                </td>
+                                <td className="p-3">{formatDate(lead.created_at)}</td>
 
                                 <td className="p-3 space-y-1">
                                     <span className={`text-white px-2 py-1 rounded text-xs ${getStatusColor(lead.status)}`}>
@@ -212,6 +209,14 @@ function AdminLeads() {
 
 export default AdminLeads
 
+
+    // < td className = "p-3" >
+    // {
+    //     lead.created_at
+    //         ? new Date(lead.created_at).toLocaleString()
+    //         : "-"
+    // }
+    // </ >
 
 
 
