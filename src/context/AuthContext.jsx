@@ -1,35 +1,53 @@
 import { createContext, useState, useEffect } from "react"
 
 export const AuthContext = createContext()
+const API_URL = import.meta.env.VITE_API_URL
 
 export function AuthProvider({ children }) {
-
     const [user, setUser] = useState(null)
 
     // 🔄 cargar sesión guardada
     useEffect(() => {
         const savedUser = localStorage.getItem("user")
-        if (savedUser) {
+        const token = localStorage.getItem("token")
+        if (savedUser && token) {
             setUser(JSON.parse(savedUser))
         }
     }, [])
 
-    const login = (username, password) => {
 
-        // 👉 login simple (después podés conectar backend)
-        if (username === "admin" && password === "admin123") {
-            const userData = { name: "Admin" }
-
+    const login = async (username, password) => {
+        try {
+            const res = await fetch(`${API_URL}/auth/login`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    username,
+                    password
+                })
+            })
+            if (!res.ok) {
+                throw new Error("Credenciales incorrectas")
+            }
+            const data = await res.json()
+            // 🔐 guardar token
+            localStorage.setItem("token", data.access_token)
+            // 👤 guardar user básico
+            const userData = { name: username }
             setUser(userData)
             localStorage.setItem("user", JSON.stringify(userData))
-        } else {
-            alert("Credenciales incorrectas")
+        } catch (err) {
+            alert("Error de login")
+            console.error(err)
         }
     }
 
     const logout = () => {
         setUser(null)
         localStorage.removeItem("user")
+        localStorage.removeItem("token")
     }
 
     return (
@@ -40,27 +58,22 @@ export function AuthProvider({ children }) {
 }
 
 
-// import { createContext, useState } from "react"
-
-// export const AuthContext = createContext()
-
-// export function AuthProvider({ children }) {
-
-//     const [user, setUser] = useState(null)
-
-//     const login = (username, password) => {
-//         if (username === "admin" && password === "admin123") {
-//             setUser({ name: "Admin" })
-//         }
+// const login = (username, password) => {
+//     // 👉 login simple (después podés conectar backend)
+//     if (username === "admin" && password === "admin123") {
+//         const userData = { name: "Admin" }
+//         setUser(userData)
+//         localStorage.setItem("user", JSON.stringify(userData))
+//     } else {
+//         alert("Credenciales incorrectas")
 //     }
-
-//     const logout = () => {
-//         setUser(null)
-//     }
-
-//     return (
-//         <AuthContext.Provider value={{ user, login, logout }}>
-//             {children}
-//         </AuthContext.Provider>
-//     )
 // }
+
+
+// useEffect(() => {
+//     const savedUser = localStorage.getItem("user")
+//     if (savedUser) {
+//         setUser(JSON.parse(savedUser))
+//     }
+// }, [])
+

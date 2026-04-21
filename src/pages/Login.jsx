@@ -1,26 +1,20 @@
-import { useState, useContext } from "react"
+import { useState, useContext, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../context/AuthContext"
 
-import { useEffect } from "react"
-
 function Login() {
-
     const { login, user } = useContext(AuthContext)
     const navigate = useNavigate()
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [showPassword, setShowPassword] = useState(false)
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        login(username, password)
-        // pequeño delay para asegurar estado actualizado
-        setTimeout(() => {
-            if (localStorage.getItem("user")) {
-                navigate("/admin")
-            }
-        }, 100)
+        await login(username, password)
+        if (localStorage.getItem("token")) {
+            navigate("/admin")
+        }
     }
 
     useEffect(() => {
@@ -38,7 +32,6 @@ function Login() {
                 <h1 className="text-2xl font-bold mb-6 text-center">
                     Solo Administrador
                 </h1>
-
                 <input
                     type="text"
                     placeholder="Usuario"
@@ -47,8 +40,6 @@ function Login() {
                     onChange={(e) => setUsername(e.target.value)}
                     required
                 />
-
-
                 <div className="relative mb-4">
                     <input
                         type={showPassword ? "text" : "password"}
@@ -66,13 +57,10 @@ function Login() {
                         {showPassword ? "🙈" : "👁"}
                     </button>
                 </div>
-
                 <button type="submit"
                     className="w-full bg-blue-600 text-white py-2 rounded">
                     Ingresar
                 </button>
-
-
                 <p className="text-sm text-center mt-4">
                     <button
                         type="button"
@@ -82,11 +70,22 @@ function Login() {
                         Cambiar contraseña
                     </button>
                 </p>
-
             </form>
-
         </div>
     )
 }
 
 export default Login
+
+
+
+    // const handleSubmit = (e) => {
+    //     e.preventDefault()
+    //     login(username, password)
+    //     // pequeño delay para asegurar estado actualizado
+    //     setTimeout(() => {
+    //         if (localStorage.getItem("user")) {
+    //             navigate("/admin")
+    //         }
+    //     }, 100)
+    // }

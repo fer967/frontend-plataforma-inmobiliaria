@@ -21,11 +21,13 @@ function formatDate(date) {
 }
 
 function AdminLeads() {
-
     const [leads, setLeads] = useState([])
     const [filter, setFilter] = useState("all")
     const [analysis, setAnalysis] = useState(null)
     const [selectedLead, setSelectedLead] = useState(null)
+    // const API_URL = "http://127.0.0.1:8000";
+    const API_URL = import.meta.env.VITE_API_URL
+    const token = localStorage.getItem("token")
 
     useEffect(() => {
         loadLeads()
@@ -36,11 +38,12 @@ function AdminLeads() {
         setLeads(data)
     }
 
-    // const API_URL = "http://127.0.0.1:8000";
-    const API_URL = import.meta.env.VITE_API_URL
 
     async function updateStatus(id, status) {
         await fetch(`${API_URL}/leads/${id}/status?status=${status}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
             method: "PUT"
         })
         loadLeads()
@@ -55,7 +58,12 @@ function AdminLeads() {
     async function analyzeLead(lead) {
         try {
             const res = await fetch(
-                `${API_URL}/analysis/from-lead?message=${encodeURIComponent(lead.message)}`
+                `${API_URL}/analysis/from-lead?message=${encodeURIComponent(lead.message)}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
             )
             const data = await res.json()
             if (!data) {
@@ -230,6 +238,15 @@ function AdminLeads() {
 }
 
 export default AdminLeads
+
+
+
+// async function updateStatus(id, status) {
+//     await fetch(`${API_URL}/leads/${id}/status?status=${status}`, {
+//         method: "PUT"
+//     })
+//     loadLeads()
+// }
 
 
 // < td className = "p-3" >

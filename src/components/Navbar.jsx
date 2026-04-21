@@ -20,8 +20,7 @@ function Navbar() {
                     <Link to="/alquiler">Alquiler</Link>
                     <Link to="/tasaciones">Tasaciones</Link>
                     <Link to="/contacto">Contacto</Link>
-                    {/* <Link to="/login">Ingresar</Link> */}
-                    <Link to="/admin">Admin</Link>
+                    <Link to="/login">Ingresar</Link>
                 </div>
 
                 {/* Mobile button */}
@@ -41,8 +40,7 @@ function Navbar() {
                     <Link to="/alquiler" onClick={() => setMenuOpen(false)}>Alquiler</Link>
                     <Link to="/tasaciones" onClick={() => setMenuOpen(false)}>Tasaciones</Link>
                     <Link to="/contacto" onClick={() => setMenuOpen(false)}>Contacto</Link>
-                    {/* <Link to="/login" onClick={() => setMenuOpen(false)}>Ingresar</Link> */}
-                    <Link to="/admin" onClick={() => setMenuOpen(false)}>Admin</Link>
+                    <Link to="/login" onClick={() => setMenuOpen(false)}>Ingresar</Link>
                 </div>
             )}
         </nav>

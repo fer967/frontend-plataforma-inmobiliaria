@@ -20,7 +20,8 @@ import { Navigate } from "react-router-dom"
 
 function ProtectedRoute({ children }) {
   const { user } = useContext(AuthContext)
-  if (!user) {
+  const token = localStorage.getItem("token")
+  if (!user || !token) {
     return <Navigate to="/login" />
   }
   return children
@@ -69,7 +70,6 @@ function App() {
             </div>
           }
         />
-
         <Route
           path="/data-deletion"
           element={
@@ -90,6 +90,15 @@ function App() {
 }
 
 export default App
+
+
+// function ProtectedRoute({ children }) {
+//   const { user } = useContext(AuthContext)
+//   if (!user) {
+//     return <Navigate to="/login" />
+//   }
+//   return children
+// }
 
 
 
