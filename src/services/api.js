@@ -23,8 +23,21 @@ export async function createProperty(property) {
     return await response.json()
 }
 
-
-export const getLeads = async () => {
-    const response = await fetch(`${API_URL}/leads/`);
-    return response.json()
+export async function getLeads() {
+    const token = localStorage.getItem("token")
+    const res = await fetch(`${API_URL}/leads/`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+    if (!res.ok) {
+        throw new Error("Error al obtener leads")
+    }
+    return res.json()
 }
+
+
+// export const getLeads = async () => {
+//     const response = await fetch(`${API_URL}/leads/`);
+//     return response.json()
+// }
