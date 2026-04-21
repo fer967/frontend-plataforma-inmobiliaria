@@ -18,16 +18,12 @@ export function AuthProvider({ children }) {
 
     const login = async (username, password) => {
         try {
-            const res = await fetch(`${API_URL}/auth/login`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    username,
-                    password
-                })
-            })
+            const res = await fetch(
+                `${API_URL}/auth/login?username=${username}&password=${password}`,
+                {
+                    method: "POST"
+                }
+            )
             if (!res.ok) {
                 throw new Error("Credenciales incorrectas")
             }
@@ -35,7 +31,11 @@ export function AuthProvider({ children }) {
             // 🔐 guardar token
             localStorage.setItem("token", data.access_token)
             // 👤 guardar user básico
-            const userData = { name: username }
+            const userData = {
+                name: username,
+                token: data.access_token
+            }
+            // const userData = { name: username }
             setUser(userData)
             localStorage.setItem("user", JSON.stringify(userData))
         } catch (err) {
@@ -76,4 +76,16 @@ export function AuthProvider({ children }) {
 //         setUser(JSON.parse(savedUser))
 //     }
 // }, [])
+
+
+            // const res = await fetch(`${API_URL}/auth/login`, {
+            //     method: "POST",
+            //     headers: {
+            //         "Content-Type": "application/json"
+            //     },
+            //     body: JSON.stringify({
+            //         username,
+            //         password
+            //     })
+            // })
 
