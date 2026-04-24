@@ -15,6 +15,34 @@ function AdminContacts() {
             .then(data => setContacts(data))
     }, [])
 
+// 🔹 WebSocket para eventos en tiempo real
+    useEffect(() => {
+    const ws = new WebSocket(`${API_URL.replace("http", "ws")}/ws/admin`)
+
+    ws.onmessage = (event) => {
+        const data = JSON.parse(event.data)
+
+        console.log("WS EVENT:", data)
+
+        // 🔥 nuevo lead → recargar contactos
+        if (data.type === "new_lead") {
+            fetch(`${API_URL}/leads/contacts`)
+                .then(res => res.json())
+                .then(data => setContacts(data))
+        }
+
+        // 🔥 nuevo mensaje → recargar chat si está abierto
+        if (data.type === "new_message" && selectedContact) {
+            if (data.phone === selectedContact.phone) {
+                loadMessages(selectedContact.id)
+            }
+        }
+    }
+
+    return () => ws.close()
+}, [selectedContact])
+
+
     // 🔹 cargar mensajes del contacto
     async function loadMessages(contactId) {
         const res = await fetch(`${API_URL}/leads/contact/${contactId}`)
@@ -47,6 +75,7 @@ function AdminContacts() {
         await loadMessages(selectedContact.id)
         setNewMessage("")
     }
+
 
     return (
         <div className="flex h-[80vh]">
