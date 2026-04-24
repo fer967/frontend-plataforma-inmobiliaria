@@ -16,15 +16,14 @@ function PropertyDetail() {
         const data = await getProperty(id)
         setProperty(data)
     }
-
     if (!property) return <p>Cargando...</p>
-
-    const phone = "5493516184580" // 👈 tu número nuevo (sin +)
+    const phone = "5493516184580"             // usuario no recibe notificacion de envio
     const message = `Hola, quiero consultar por la propiedad:
     🏠 ${property.title}
     💰 $${property.price}
     📍 ${property.city}
-    Link: ${window.location.href}`
+    Link: ${window.location.href}
+    Ref: ${property.id}`
 
     let images = property.images?.length
         ? property.images
@@ -37,6 +36,7 @@ function PropertyDetail() {
     const mainImage = property.image_url || images[0]
     // thumbnails SIN la portada
     const galleryImages = images.filter(img => img !== mainImage)
+
 
     return (
         <div className="p-8 max-w-6xl mx-auto">
@@ -61,6 +61,9 @@ function PropertyDetail() {
                 >
                     Consultar por WhatsApp
                 </a>
+                <p className="text-sm text-gray-500 mt-2">
+                    Serás redirigido a WhatsApp. Recordá presionar "Enviar" para que un asesor te responda.
+                </p>
 
                 <p className="text-gray-600 mt-2">
                     {property.city} {property.neighborhood && `- ${property.neighborhood}`}
