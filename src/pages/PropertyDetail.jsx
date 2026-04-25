@@ -59,7 +59,7 @@ function PropertyDetail() {
                     target="_blank"
                     className="inline-block mt-4 bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600"
                 >
-                    Consultar por WhatsApp
+                    Consultar por esta Propiedad
                 </a>
                 <p className="text-sm text-gray-500 mt-2">
                     Serás redirigido a WhatsApp. Recordá presionar "Enviar" para que un asesor te responda.
