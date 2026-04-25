@@ -27,18 +27,18 @@ function AdminLayout() {
                 <h2 className="text-xl font-bold mb-6">Admin</h2>
                 <nav className="flex flex-col gap-2">
                     <Link to="/admin" className="hover:bg-gray-700 p-2 rounded">
-                        Dashboard
+                        Propiedades
                     </Link>
                     <Link to="/admin/leads" className="hover:bg-gray-700 p-2 rounded">
-                        Leads
+                        Consultas
                     </Link>
+                    <button
+                        onClick={logout}
+                        className="mt-auto bg-red-600 p-2 rounded"
+                    >
+                        Cerrar sesión
+                    </button>
                 </nav>
-                <button
-                    onClick={logout}
-                    className="mt-auto bg-red-600 p-2 rounded"
-                >
-                    Cerrar sesión
-                </button>
             </aside>
             {/* CONTENT */}
             <main className="flex-1 p-4 md:p-8">
