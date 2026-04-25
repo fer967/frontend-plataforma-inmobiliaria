@@ -164,7 +164,6 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                     />
-
                     <select
                         className="w-full border p-2"
                         value={operationType}
@@ -175,7 +174,6 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                         <option value="venta">Venta</option>
                         <option value="alquiler">Alquiler</option>
                     </select>
-
                     <select
                         className="w-full border p-2"
                         value={propertyType}
@@ -188,7 +186,6 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                         <option value="local">Local</option>
                         <option value="terreno">Terreno</option>
                     </select>
-
                     <input
                         type="text"
                         placeholder="Barrio"
@@ -196,7 +193,6 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                         value={neighborhood}
                         onChange={(e) => setNeighborhood(e.target.value)}
                     />
-
                     <input
                         type="number"
                         placeholder="Dormitorios"
@@ -204,7 +200,6 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                         value={bedrooms}
                         onChange={(e) => setBedrooms(e.target.value)}
                     />
-
                     <input
                         type="number"
                         placeholder="Baños"
@@ -212,7 +207,6 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                         value={bathrooms}
                         onChange={(e) => setBathrooms(e.target.value)}
                     />
-
                     <input
                         type="number"
                         placeholder="Superficie m²"
@@ -220,7 +214,6 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                         value={area}
                         onChange={(e) => setArea(e.target.value)}
                     />
-
                     <label className="flex items-center gap-2">
                         <input
                             type="checkbox"
@@ -229,7 +222,6 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                         />
                         Propiedad destacada
                     </label>
-
                     <input
                         type="number"
                         placeholder="Precio"
@@ -246,8 +238,6 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                         onChange={(e) => setCity(e.target.value)}
                         required
                     />
-
-
                     <input
                         type="file"
                         multiple
@@ -258,8 +248,6 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                     <p className="text-xs text-gray-500">
                         Podés seleccionar múltiples imágenes (Ctrl + click o Shift + click)
                     </p>
-
-
                     {existingImages.length > 0 && (
                         <div className="grid grid-cols-3 gap-2 mt-2">
                             {existingImages.map((img, i) => (
@@ -279,8 +267,6 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                             ))}
                         </div>
                     )}
-
-
                     {files.length > 0 && (
                         <div className="grid grid-cols-3 gap-2 mt-2">
                             {files.map((file, index) => (
@@ -292,8 +278,6 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                             ))}
                         </div>
                     )}
-
-
                     <div className="flex justify-end gap-2">
                         <button
                             type="button"
@@ -306,7 +290,6 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                             {property ? "Actualizar" : "Crear"}
                         </button>
                     </div>
-
                     <button
                         type="button"
                         onClick={onClose}
@@ -314,16 +297,6 @@ function CreatePropertyModal({ isOpen, onClose, onCreated, property }) {
                         >
                         Volver
                     </button>
-
-                    {/* <button
-                        type="button"
-                        onClick={() => navigate("/admin")}
-                        className="mb-4 text-blue-600 underline"
-                    >
-                        Volver 
-                    </button> */}
-
-
                 </form>
             </div>
         </div>
