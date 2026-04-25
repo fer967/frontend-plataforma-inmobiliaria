@@ -93,7 +93,7 @@ function AdminLeads() {
     return (
         <div className="p-4 md:p-8 max-w-7xl mx-auto">
             <h1 className="text-2xl md:text-3xl font-bold mb-6">
-                Leads
+                Consultas
             </h1>
             <div className="flex flex-wrap gap-2 mb-6">
                 <button

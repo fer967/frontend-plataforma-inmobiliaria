@@ -49,7 +49,7 @@ function AdminIdecor() {
                         }}
                         className="bg-blue-600 text-white px-3 py-2 rounded w-full"
                     >
-                        Informe impositivo
+                        Descargar informe impositivo
                     </button>
                     <button
                         onClick={() => {
@@ -61,7 +61,7 @@ function AdminIdecor() {
                         }}
                         className="bg-yellow-600 text-white px-3 py-2 rounded w-full"
                     >
-                        Ver deuda / pagar
+                        Ver estado impositivo
                     </button>
                     <button
                         onClick={() =>
