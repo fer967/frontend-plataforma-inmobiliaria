@@ -65,13 +65,13 @@ function Home() {
                             <option value="local">Local</option>
                         </select>
 
-                        <input
+                        {/* <input
                             type="text"
                             placeholder="Ciudad..."
                             className="p-3 rounded-lg border-2 border-white/60 bg-white text-black"
                             value={city}
                             onChange={(e) => setCity(e.target.value)}
-                        />
+                        /> */}
 
                         <button
                             onClick={handleSearch}
