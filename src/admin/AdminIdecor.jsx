@@ -68,6 +68,19 @@ function AdminIdecor() {
 
             {data?.idecor && (
                 <div className="mt-4 bg-gray-100 p-4 rounded space-y-2">
+                    <p><b>Cuenta:</b> </p>
+                    <p><b>Nomenclatura:</b> </p>
+                    <p><b>Designación:</b> </p>
+                    <p><b>Tipo:</b> </p>
+                    <p><b>Estado:</b> </p>
+                    <p><b>Sup. Terreno:</b>  m²</p>
+                    <p><b>Sup. Edificada:</b>  m²</p>
+                    <p><b>Valuación:</b> $</p>
+                </div>
+            )}
+
+            {/* {data?.idecor && (
+                <div className="mt-4 bg-gray-100 p-4 rounded space-y-2">
                     <p><b>Cuenta:</b> {data.idecor.cuenta}</p>
                     <p><b>Nomenclatura:</b> {data.idecor.nomenclatura}</p>
                     <p><b>Designación:</b> {data.idecor.designacion}</p>
@@ -77,7 +90,7 @@ function AdminIdecor() {
                     <p><b>Sup. Edificada:</b> {data.idecor.superficie_mejoras} m²</p>
                     <p><b>Valuación:</b> ${data.idecor.valuacion_total}</p>
                 </div>
-            )}
+            )} */}
 
         </div>
     )
@@ -89,17 +102,6 @@ export default AdminIdecor
 
 
 
-// {data?.idecor && (
-//                 <div className="mt-4 bg-gray-100 p-4 rounded space-y-2">
-//                     <p><b>Cuenta:</b> </p>
-//                     <p><b>Nomenclatura:</b> </p>
-//                     <p><b>Designación:</b> </p>
-//                     <p><b>Tipo:</b> </p>
-//                     <p><b>Estado:</b> </p>
-//                     <p><b>Sup. Terreno:</b>  m²</p>
-//                     <p><b>Sup. Edificada:</b>  m²</p>
-//                     <p><b>Valuación:</b> $</p>
-//                 </div>
-//             )}
+
 
 
