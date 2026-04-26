@@ -17,7 +17,7 @@ function AdminIdecor() {
             <h1 className="text-2xl font-bold mb-4">Consulta IDECOR</h1>
             <input
                 type="text"
-                placeholder="Número de cuenta"
+                placeholder="Ingresar número de cuenta"
                 className="w-full border p-2 mb-2"
                 value={numero}
                 onChange={(e) => setNumero(e.target.value)}
@@ -26,8 +26,9 @@ function AdminIdecor() {
                 onClick={buscar}
                 className="bg-purple-600 text-white px-4 py-2 rounded w-full"
             >
-                Buscar
+                Buscar informacion de Catastro
             </button>
+            <hr />
 
             <button
                 onClick={() => {
@@ -41,6 +42,7 @@ function AdminIdecor() {
             >
                 Descargar informe impositivo
             </button>
+            <hr />
             <button
                 onClick={() => {
                     navigator.clipboard.writeText(data.idecor.cuenta)
@@ -53,6 +55,7 @@ function AdminIdecor() {
             >
                 Ver estado impositivo
             </button>
+            <hr />
             <button
                 onClick={() =>
                     window.open(`${API_URL}/idecor/kml/${numero}`, "_blank")
