@@ -40,12 +40,14 @@ function AdminDashboard() {
                 + Nueva Propiedad
             </button>
 
+
             <button
                 onClick={() => navigate("/admin/idecor")}
                 className="bg-purple-600 text-white px-4 py-2 rounded"
             >
                 Consultar IDECOR
             </button>
+
 
             <button
                 onClick={() => navigate("/admin/contacts")}
