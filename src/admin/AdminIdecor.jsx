@@ -22,51 +22,49 @@ function AdminIdecor() {
                 value={numero}
                 onChange={(e) => setNumero(e.target.value)}
             />
-            <button
-                onClick={buscar}
-                className="bg-purple-600 text-white px-4 py-2 rounded w-full"
-            >
-                Buscar informacion de Catastro
-            </button>
-            <hr />
-            <hr />
+            <div className="space-y-3">
+                <button
+                    onClick={buscar}
+                    className="bg-purple-600 text-white px-4 py-2 rounded w-full"
+                >
+                    Buscar informacion de Catastro
+                </button>
 
-            <button
-                onClick={() => {
-                    navigator.clipboard.writeText(data.idecor.cuenta)
-                    window.open(
-                        "https://www.rentascordoba.gob.ar/gestiones/informe/detalle/inmueble",
-                        "_blank"
-                    )
-                }}
-                className="bg-blue-600 text-white px-3 py-2 rounded w-full"
-            >
-                Descargar informe impositivo
-            </button>
-            <hr />
-            <hr />
-            <button
-                onClick={() => {
-                    navigator.clipboard.writeText(data.idecor.cuenta)
-                    window.open(
-                        "https://www.rentascordoba.gob.ar/emision/ver-y-pagar/inmobiliario",
-                        "_blank"
-                    )
-                }}
-                className="bg-yellow-600 text-white px-3 py-2 rounded w-full"
-            >
-                Ver estado impositivo
-            </button>
-            <hr />
-            <hr />
-            <button
-                onClick={() =>
-                    window.open(`${API_URL}/idecor/kml/${numero}`, "_blank")
-                }
-                className="bg-green-600 text-white px-3 py-2 rounded w-full"
-            >
-                Ver en Google Earth
-            </button>
+                <button
+                    onClick={() => {
+                        navigator.clipboard.writeText(data.idecor.cuenta)
+                        window.open(
+                            "https://www.rentascordoba.gob.ar/gestiones/informe/detalle/inmueble",
+                            "_blank"
+                        )
+                    }}
+                    className="bg-blue-600 text-white px-3 py-2 rounded w-full"
+                >
+                    Descargar informe impositivo
+                </button>
+
+                <button
+                    onClick={() => {
+                        navigator.clipboard.writeText(data.idecor.cuenta)
+                        window.open(
+                            "https://www.rentascordoba.gob.ar/emision/ver-y-pagar/inmobiliario",
+                            "_blank"
+                        )
+                    }}
+                    className="bg-yellow-600 text-white px-3 py-2 rounded w-full"
+                >
+                    Ver estado impositivo
+                </button>
+
+                <button
+                    onClick={() =>
+                        window.open(`${API_URL}/idecor/kml/${numero}`, "_blank")
+                    }
+                    className="bg-green-600 text-white px-3 py-2 rounded w-full"
+                >
+                    Ver en Google Earth
+                </button>
+            </div>
 
 
             {data?.idecor && (
