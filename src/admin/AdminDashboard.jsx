@@ -31,7 +31,7 @@ function AdminDashboard() {
     return (
         <div className="p-4 md:p-8 max-w-7xl mx-auto">
             <h1 className="text-2xl md:text-3xl font-bold mb-6">
-                Panel Administrador
+                Listado de Propiedades
             </h1>
             <button
                 onClick={() => setShowModal(true)}

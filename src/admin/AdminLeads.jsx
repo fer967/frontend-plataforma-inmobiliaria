@@ -7,6 +7,8 @@ function getStatusColor(status) {
             return "bg-blue-500"
         case "contacted":
             return "bg-yellow-500"
+        case "in_progress":
+            return "bg-orange-500"
         case "closed":
             return "bg-green-600"
         default:
@@ -115,6 +117,12 @@ function AdminLeads() {
                     Contactados
                 </button>
                 <button
+                    onClick={() => setFilter("in_progress")}
+                    className={`px-3 py-1 rounded ${filter === "in_progress" ? "bg-orange-500 text-white" : "bg-gray-200"}`}
+                >
+                    En Progreso
+                </button>
+                <button
                     onClick={() => setFilter("closed")}
                     className={`px-3 py-1 rounded ${filter === "closed" ? "bg-green-600 text-white" : "bg-gray-200"}`}
                 >
@@ -162,6 +170,7 @@ function AdminLeads() {
                                     >
                                         <option value="new">Nuevo</option>
                                         <option value="contacted">Contactado</option>
+                                        <option value="in_progress">En Progreso</option>
                                         <option value="closed">Cerrado</option>
                                     </select>
                                 </td>
